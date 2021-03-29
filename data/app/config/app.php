@@ -118,7 +118,8 @@ return [
      * Default value: []
      */
     'hidden_files' => [
-        // ...
+        "README.md",
+        "directory-lister.svg",
     ],
 
     /**
