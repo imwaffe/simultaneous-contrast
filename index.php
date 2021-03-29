@@ -135,7 +135,7 @@
         }
 
         $(document).ready(function(){
-            setTimeout(drawExampleCircles,100);
+            setTimeout(drawExampleCircles,1000);
         })
     </script>
 
