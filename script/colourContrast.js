@@ -66,7 +66,7 @@ var lastTimeStamp = Date.now();
 
 /* Action when next button is pressed */
 $("#next").click(function(){
-    if(selectedColor<inputColors.length-1){
+    if(selectedColor<inputColors.length){
         addData();
         actualTime = 0;
         selectedColor++;
