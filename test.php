@@ -18,7 +18,7 @@
         <div class="row" style="margin-top:10px">
             <div class="col-md-12">
                 <div align="center">
-                    <canvas id="canvas" class="canvas-test" height="300px" width="700px"></canvas>
+                    <canvas id="canvas" class="canvas-test" height="400px" width="1000px"></canvas>
                 </div>
             </div>
         </div>
@@ -91,7 +91,11 @@
 </div>
 
 </body>
-
+<script type="text/javascript">
+    var gap = 300;
+    var innerSize = 75;
+    var outerSize = 250;
+</script>
 <script src="jquery-colorpickersliders/jquery.colorpickersliders.js"></script>
 <script src="script/runTest.js"></script>
 <script src="script/colourContrast.js"></script>

@@ -36,7 +36,11 @@ class Rectangles{
     setSecondBGColor(){/*
         this.c.fillStyle = color;
         this.c.fillRect(this.leftOuterMargin, this.topOuterMargin+this.outerSize+this.gap, this.outerSize, this.outerSize);*/
-        var imageData = this.c.createImageData(this.outerSize,this.outerSize);
+        var tmpCanvas = document.createElement('canvas');
+        tmpCanvas.setAttribute("width","50%");
+        tmpCanvas.setAttribute("height","50%");
+        var tmpCtx = tmpCanvas.getContext('2d');
+        var imageData = tmpCtx.createImageData(50,50);
         for(var i=0; i<imageData.data.length; i+=4){
             var dot=Math.floor(Math.random()*255);
             imageData.data[i] = dot;
@@ -44,7 +48,9 @@ class Rectangles{
             imageData.data[i+2] = dot;
             imageData.data[i+3] = 255;
         }
-        this.c.putImageData(imageData, this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin);
+        tmpCtx.putImageData(imageData,0,0);
+        //this.c.putImageData(tmpCtx.getImageData(0,0,this.outerSize,this.outerSize), this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin);
+        this.c.drawImage(tmpCanvas,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
     }
 
     setFirstFGColor(color){
@@ -74,4 +80,4 @@ class Rectangles{
 }
 
 var canvasDrawer;
-canvasDrawer = new Rectangles(200, 75, 100, document.getElementById("canvas"), $("#hsl"));
+canvasDrawer = new Rectangles(outerSize, innerSize, gap, document.getElementById("canvas"), $("#hsl"));

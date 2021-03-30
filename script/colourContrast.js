@@ -1,21 +1,19 @@
+/* Canvas ID */
 const CANVAS_ID = "canvas";
 
+/* Init black empty canvas and sets context variables */
 var c = document.getElementById(CANVAS_ID).getContext("2d");
 var width = document.getElementById(CANVAS_ID).width;
 var height = document.getElementById(CANVAS_ID).height;
-
-var isTestRunning = true;
-
 c.beginPath();
 c.fillStyle = "#000000";
 c.fillRect(0, 0, width, height);
 
 
 /* Generate a random sequence, so that everytime the page is loaded the charts are displayed in different order */
-
-var selectedColor = 0;
-var randomSequence = [];
-var inputColors;
+var selectedColor = 0;  //Index used with randomSequence array to get the actual chart number
+var randomSequence = [];    //Used as a map to get a pseudorandom index for inputColors objects array
+var inputColors;    //Contains the colors 
 
 $.get( "colors.csv", function(CSVdata) {
       inputColors = $.csv.toObjects(CSVdata);
@@ -66,12 +64,11 @@ var lastTimeStamp = Date.now();
 
 /* Action when next button is pressed */
 $("#next").click(function(){
-    if(selectedColor<inputColors.length){
-        addData();
-        actualTime = 0;
-        selectedColor++;
-    }
-    else{
+    console.log(selectedColor);
+    addData();
+    actualTime = 0;
+    selectedColor++;
+    if(selectedColor>=inputColors.length){
         window.removeEventListener('beforeunload',alertOnLeaving);
         window.location.replace("thankyou.php");
     }

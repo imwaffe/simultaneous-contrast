@@ -117,6 +117,11 @@
         </div>
     </body>
 
+    <script type="text/javascript">
+        var gap = 100;
+        var innerSize = 75;
+        var outerSize = 200;
+    </script>
     <script src="jquery-colorpickersliders/jquery.colorpickersliders.js"></script>
     <script src="script/runTest.js"></script>
     <script src="script/colourContrast.js"></script>
