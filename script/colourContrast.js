@@ -69,13 +69,17 @@ $("#next").click(function(){
     actualTime = 0;
     selectedColor++;
     if(selectedColor>=inputColors.length){
-        window.removeEventListener('beforeunload',alertOnLeaving);
-        window.location.replace("thankyou.php");
+        $(".container").hide();
+        setTimeout(completedTest,2000);
     }
     canvasDrawer.init(inputColors[randomSequence[selectedColor]]);
     showColorsSlider(inputColors[randomSequence[selectedColor]].color);
     setText();
 });
+function completedTest(){
+    window.removeEventListener('beforeunload',alertOnLeaving);
+    window.location.replace("thankyou.php");
+}
 
 /* Action when reset button is pressed */
 $("#reset").click(function(){
