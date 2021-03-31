@@ -73,6 +73,7 @@ $("#next").click(function(){
         window.location.replace("thankyou.php");
     }
     canvasDrawer.init(inputColors[randomSequence[selectedColor]]);
+    showColorsSlider(inputColors[randomSequence[selectedColor]].color);
     setText();
 });
 
@@ -83,10 +84,10 @@ $("#reset").click(function(){
 
 /* Write text in top right corner indicating the chart number */
 function setText(){
-    var text = "Tavola "+(randomSequence[selectedColor]+1);
+    var text = "Tavola "+(inputColors[randomSequence[selectedColor]].chart_id);
     c.font = "12px Arial";
     c.fillStyle = "#000000";
-    c.fillRect(9,4,c.measureText(text).width+2,13);
+    c.fillRect(9,4,c.measureText(text).width+100,13);
     c.fillStyle = "#808080";
     c.fillText(text,10,15);
 }
@@ -98,6 +99,7 @@ function reset(){
     }).done(function(){
         actualTime = 0;
         canvasDrawer.init(inputColors[randomSequence[selectedColor]]);
+        showColorsSlider(inputColors[randomSequence[selectedColor]].color);
         setText();
     });
 }
@@ -156,4 +158,15 @@ function saveImage(){
         chart_id: getChartID(),
         img_base64: canvas.toDataURL("image/png")
     });
+}
+
+function showColorsSlider(condition){
+    if(condition==="true"){
+        $(".cp-hslhue").show();
+        $(".cp-hslsaturation").show();
+    }
+    else if(condition==="false"){
+        $(".cp-hslhue").hide();
+        $(".cp-hslsaturation").hide();
+    }
 }

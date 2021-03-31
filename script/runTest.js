@@ -16,9 +16,6 @@ class Rectangles{
     }
 
     init(colors){
-        $(".cp-hslhue").hide();
-        $(".cp-hslsaturation").hide();
-
         this.colorPicker.trigger("colorpickersliders.updateColor", colors.second_foreground);
 
         this.setFirstBGColor(colors.background_color);
