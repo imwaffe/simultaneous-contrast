@@ -8,6 +8,9 @@
     $_SESSION['session_id'] = "test_".date("d-m-Y_G-i-s");
 
     $_SESSION['data'] = array();
+
+    require_once("components/DotEnv.php");
+    (new DotEnv('.env'))->load();
 ?>
 
 <?php include "components/header.php"; ?>
@@ -92,9 +95,9 @@
 
 </body>
 <script type="text/javascript">
-    var gap = 300;
-    var innerSize = 75;
-    var outerSize = 250;
+    var gap = <?php echo getenv('TEST_GAP'); ?>;
+    var innerSize = <?php echo getenv('TEST_INNERSQUARE_SIZE'); ?>;
+    var outerSize = <?php echo getenv('TEST_OUTERSQUARE_SIZE'); ?>;
 </script>
 <script src="jquery-colorpickersliders/jquery.colorpickersliders.js"></script>
 <script src="script/runTest.js"></script>
