@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if(!isset($_SESSION['visited_test']) || $_SESSION['visited_test']==false)
+        header("location: index.php");
+
+    $_SESSION['visited_test'] = false;
 ?>
 
 <?php include "components/header.php"; ?>

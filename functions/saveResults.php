@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$_SESSION['visited_test'] = true;
 
 	$testRoot = "../data/test-results/".$_SESSION['session_id']."/";
 	$testRootCharts=$testRoot."/charts/";

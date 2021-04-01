@@ -5,9 +5,9 @@
         header("location: index.php");
 
     $_SESSION['visited_index'] = false;
-    $_SESSION['session_id'] = "test_".date("d-m-Y_G-i-s");
+    $_SESSION['visited_test'] = false;
 
-    $_SESSION['data'] = array();
+    $_SESSION['session_id'] = "test_".date("d-m-Y_G-i-s");
 
     require_once("components/DotEnv.php");
     (new DotEnv('.env'))->load();
@@ -32,7 +32,6 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6" align="center">

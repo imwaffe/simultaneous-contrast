@@ -48,7 +48,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        setTimeout(loadChartsList,500);
+        $chartLoadedCallbacks.add(loadChartsList);
         $("#charts-list").change(function(){
             displayChart($(this).val());
         })

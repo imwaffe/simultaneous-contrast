@@ -35,21 +35,15 @@ $.get( "colors.csv", function(CSVdata) {
     reset();
 });
 
-
-$savedDataCallbacks = $.Callbacks();
 function addData(){
-    $.post("functions/saveResults.php?action=add",{
+    return $.post("functions/saveResults.php?action=add",{
         chart_id: getChartID(),
         bg_color: getCurrentBgColor(),
         actual_color: getCurrentActualColor(),
         picked_color: getCurrentPickedColor(),
         euclid_dist: getEuclidDist(getCurrentActualColor(),getCurrentPickedColor()),
         time: actualTime
-    }).done(function(){
-        saveImage().done(function(){
-            $savedDataCallbacks.fire();
-        });
-    });
+    }).done(saveImage());
 }
 function saveImage(){
     var canvas = document.getElementById(CANVAS_ID);
@@ -89,25 +83,21 @@ var lastTimeStamp = Date.now();
 
 /* Action when next button is pressed */
 $("#next").click(function(){
-    addData();
     $("#test-container").hide();
     $("#wait-message").show();
+
+    addData().done(function(){
+        $("#test-container").show();
+        $("#wait-message").hide();
+        actualTime = 0;
+        selectedColor++;
+        if(selectedColor>=inputColors.length){
+            window.removeEventListener('beforeunload',alertOnLeaving);
+            window.location.replace("thankyou.php");
+        }
+        displayChart(randomSequence[selectedColor]);
+    });
 });
-$savedDataCallbacks.add(goNext);
-function goNext(){
-    $("#test-container").show();
-    $("#wait-message").hide();
-    actualTime = 0;
-    selectedColor++;
-    if(selectedColor>=inputColors.length){
-        completedTest();
-    }
-    displayChart(randomSequence[selectedColor]);
-}
-function completedTest(){
-    window.removeEventListener('beforeunload',alertOnLeaving);
-    window.location.replace("thankyou.php");
-}
 
 $rewriteChartCallback = $.Callbacks();
 function displayChart(index){

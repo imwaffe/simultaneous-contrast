@@ -1,6 +1,7 @@
 <?php
     session_start();
     $_SESSION['visited_index'] = false;
+    $_SESSION['visited_test'] = false;
     
     $useragent=$_SERVER['HTTP_USER_AGENT'];
 
