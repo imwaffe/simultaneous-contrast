@@ -135,19 +135,19 @@
 
     <script>
         function drawExampleCircles(){
-            this.c.lineWidth="5";
-            this.c.beginPath();
-            this.c.arc(canvasDrawer.getLeftMarginSecondFG(), canvasDrawer.getTopMarginFG(), 60, 0, 2 * Math.PI);
-            this.c.strokeStyle="blue";
-            this.c.stroke();
-            this.c.beginPath();
-            this.c.arc(canvasDrawer.getLeftMarginFirstFG(), canvasDrawer.getTopMarginFG(), 60, 0, 2 * Math.PI);
-            this.c.strokeStyle="red";
-            this.c.stroke();
+            canvasDrawer.c.lineWidth="5";
+            canvasDrawer.c.beginPath();
+            canvasDrawer.c.arc(canvasDrawer.getLeftMarginSecondFG(), canvasDrawer.getTopMarginFG(), 60, 0, 2 * Math.PI);
+            canvasDrawer.c.strokeStyle="blue";
+            canvasDrawer.c.stroke();
+            canvasDrawer.c.beginPath();
+            canvasDrawer.c.arc(canvasDrawer.getLeftMarginFirstFG(), canvasDrawer.getTopMarginFG(), 60, 0, 2 * Math.PI);
+            canvasDrawer.c.strokeStyle="red";
+            canvasDrawer.c.stroke();
         }
 
         $(document).ready(function(){
-            setTimeout(drawExampleCircles,1000);
+            $rewriteChartCallback.add(drawExampleCircles);
         })
     </script>
 

@@ -15,6 +15,7 @@ var selectedColor = 0;  //Index used with randomSequence array to get the actual
 var randomSequence = [];    //Used as a map to get a pseudorandom index for inputColors objects array
 var inputColors;    //Contains the colors 
 
+var $chartLoadedCallbacks = $.Callbacks();
 $.get( "colors.csv", function(CSVdata) {
       inputColors = $.csv.toObjects(CSVdata);
 }).done(function(){
@@ -30,7 +31,35 @@ $.get( "colors.csv", function(CSVdata) {
             usedNumbers[value] = true;
         } 
     }
+    $chartLoadedCallbacks.fire();
+    reset();
+});
 
+
+$savedDataCallbacks = $.Callbacks();
+function addData(){
+    $.post("functions/saveResults.php?action=add",{
+        chart_id: getChartID(),
+        bg_color: getCurrentBgColor(),
+        actual_color: getCurrentActualColor(),
+        picked_color: getCurrentPickedColor(),
+        euclid_dist: getEuclidDist(getCurrentActualColor(),getCurrentPickedColor()),
+        time: actualTime
+    }).done(function(){
+        saveImage().done(function(){
+            $savedDataCallbacks.fire();
+        });
+    });
+}
+function saveImage(){
+    var canvas = document.getElementById(CANVAS_ID);
+    return $.post("functions/saveResults.php?action=image",{
+        chart_id: getChartID(),
+        img_base64: canvas.toDataURL("image/png")
+    });
+}
+
+function initColorPicker(){
     /* Init color picker */
     $("#hsl").ColorPickerSliders({
         flat: true,
@@ -50,45 +79,44 @@ $.get( "colors.csv", function(CSVdata) {
         },
         onchange: function(container, color){
             canvasDrawer.setSecondFGColor(color.tiny.toHexString());
-            inputColors[randomSequence[selectedColor]].second_foreground = color.tiny.toHexString();
+            inputColors[randomSequence[selectedColor]].picked_color = color.tiny.toHexString();
         }
     });
-
-    reset();
-    setText();
-});
-
+}
 
 var actualTime = 0;
 var lastTimeStamp = Date.now();
 
 /* Action when next button is pressed */
 $("#next").click(function(){
-    console.log(selectedColor);
     addData();
+    $(".container").hide();
+});
+$savedDataCallbacks.add(goNext);
+function goNext(){
+    $(".container").show();
     actualTime = 0;
     selectedColor++;
     if(selectedColor>=inputColors.length){
-        $(".container").hide();
-        setTimeout(completedTest,2000);
+        completedTest();
     }
-    canvasDrawer.init(inputColors[randomSequence[selectedColor]]);
-    showColorsSlider(inputColors[randomSequence[selectedColor]].color);
-    setText();
-});
+    displayChart(randomSequence[selectedColor]);
+}
 function completedTest(){
     window.removeEventListener('beforeunload',alertOnLeaving);
     window.location.replace("thankyou.php");
 }
 
-/* Action when reset button is pressed */
-$("#reset").click(function(){
-    reset();
-})
+$rewriteChartCallback = $.Callbacks();
+function displayChart(index){
+    canvasDrawer.init(inputColors[index]);
+    showColorsSlider(inputColors[index].color);
+    setText("Tavola "+inputColors[index].chart_id);
+    $rewriteChartCallback.fire();
+}
 
 /* Write text in top right corner indicating the chart number */
-function setText(){
-    var text = "Tavola "+(inputColors[randomSequence[selectedColor]].chart_id);
+function setText(text){
     c.font = "12px Arial";
     c.fillStyle = "#000000";
     c.fillRect(9,4,c.measureText(text).width+100,13);
@@ -98,14 +126,8 @@ function setText(){
 
 /* Reset the current chart (also used for initializing the first one) */
 function reset(){
-    $.get( "colors.csv", function(CSVdata) {
-      inputColors = $.csv.toObjects(CSVdata);
-    }).done(function(){
-        actualTime = 0;
-        canvasDrawer.init(inputColors[randomSequence[selectedColor]]);
-        showColorsSlider(inputColors[randomSequence[selectedColor]].color);
-        setText();
-    });
+    actualTime = 0;
+    displayChart(randomSequence[selectedColor]);
 }
 
 /* Function to download canvas as PNG image */
@@ -130,7 +152,7 @@ function getCurrentActualColor(){
     return inputColors[randomSequence[selectedColor]].first_foreground;
 }
 function getCurrentPickedColor(){
-    return inputColors[randomSequence[selectedColor]].second_foreground;
+    return inputColors[randomSequence[selectedColor]].picked_color;
 }
 function getCurrentBgColor(){
     return inputColors[randomSequence[selectedColor]].background_color;
@@ -145,25 +167,6 @@ function getEuclidDist(color1, color2){
     return Math.sqrt(Math.pow((color1.r-color2.r),2)+Math.pow((color1.g-color2.g),2)+Math.pow((color1.b-color2.b),2));
 }
 
-function addData(){
-    $.post("functions/saveResults.php?action=add",{
-        chart_id: getChartID(),
-        bg_color: getCurrentBgColor(),
-        actual_color: getCurrentActualColor(),
-        picked_color: getCurrentPickedColor(),
-        euclid_dist: getEuclidDist(getCurrentActualColor(),getCurrentPickedColor()),
-        time: actualTime
-    });
-    saveImage();
-}
-function saveImage(){
-    var canvas = document.getElementById(CANVAS_ID);
-    $.post("functions/saveResults.php?action=image",{
-        chart_id: getChartID(),
-        img_base64: canvas.toDataURL("image/png")
-    });
-}
-
 function showColorsSlider(condition){
     if(condition==="true"){
         $(".cp-hslhue").show();
@@ -174,3 +177,7 @@ function showColorsSlider(condition){
         $(".cp-hslsaturation").hide();
     }
 }
+
+$(document).ready(function(){
+    $chartLoadedCallbacks.add(initColorPicker);
+});
