@@ -87,15 +87,15 @@ $("#next").click(function(){
     $("#wait-message").show();
 
     addData().done(function(){
-        $("#test-container").show();
-        $("#wait-message").hide();
-        lastTimeStamp = Date.now();
-        actualTime = 0;
         selectedColor++;
         if(selectedColor>=inputColors.length){
             window.removeEventListener('beforeunload',alertOnLeaving);
             window.location.replace("thankyou.php");
         }
+        $("#test-container").show();
+        $("#wait-message").hide();
+        lastTimeStamp = Date.now();
+        actualTime = 0;
         displayChart(randomSequence[selectedColor]);
     });
 });
