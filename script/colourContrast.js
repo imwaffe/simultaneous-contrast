@@ -89,6 +89,7 @@ $("#next").click(function(){
     addData().done(function(){
         $("#test-container").show();
         $("#wait-message").hide();
+        lastTimeStamp = Date.now();
         actualTime = 0;
         selectedColor++;
         if(selectedColor>=inputColors.length){
