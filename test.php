@@ -17,7 +17,7 @@
 
 <body>
     <div class="jumbotron vertical-center">
-    <div class="container">
+    <div class="container" id="test-container">
         <div class="row" style="margin-top:10px">
             <div class="col-md-12">
                 <div align="center">
@@ -41,6 +41,16 @@
                 </button>
             </div>
             <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <div class="container" id="wait-message" style="display: none;">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h1>attendi...</h1>
+            </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
 </div>

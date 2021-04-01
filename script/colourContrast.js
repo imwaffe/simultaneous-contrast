@@ -90,11 +90,13 @@ var lastTimeStamp = Date.now();
 /* Action when next button is pressed */
 $("#next").click(function(){
     addData();
-    $(".container").hide();
+    $("#test-container").hide();
+    $("#wait-message").show();
 });
 $savedDataCallbacks.add(goNext);
 function goNext(){
-    $(".container").show();
+    $("#test-container").show();
+    $("#wait-message").hide();
     actualTime = 0;
     selectedColor++;
     if(selectedColor>=inputColors.length){
