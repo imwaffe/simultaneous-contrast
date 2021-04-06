@@ -34,10 +34,10 @@ class Rectangles{
         this.c.fillStyle = color;
         this.c.fillRect(this.leftOuterMargin, this.topOuterMargin+this.outerSize+this.gap, this.outerSize, this.outerSize);*/
         var tmpCanvas = document.createElement('canvas');
-        tmpCanvas.setAttribute("width","50%");
-        tmpCanvas.setAttribute("height","50%");
+        tmpCanvas.setAttribute("width","100%");
+        tmpCanvas.setAttribute("height","100%");
         var tmpCtx = tmpCanvas.getContext('2d');
-        var imageData = tmpCtx.createImageData(50,50);
+        var imageData = tmpCtx.createImageData(200,200);
         for(var i=0; i<imageData.data.length; i+=4){
             var dot=Math.floor(Math.random()*255);
             imageData.data[i] = dot;

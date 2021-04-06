@@ -16,7 +16,7 @@ var randomSequence = [];    //Used as a map to get a pseudorandom index for inpu
 var inputColors;    //Contains the colors 
 
 var $chartLoadedCallbacks = $.Callbacks();
-$.get( "colors.csv", function(CSVdata) {
+$.get( ((typeof csvFile==='undefined')?"colors.csv":csvFile), function(CSVdata) {
       inputColors = $.csv.toObjects(CSVdata);
 }).done(function(){
     var usedNumbers = [];

@@ -18,20 +18,38 @@
             <div class="row" style="margin-top:10px">
                 <div class="col-md-12">
                     <div align="center">
-                        <canvas id="canvas" class="canvas-test" height="400px" width="1000px"></canvas>
+                        <canvas id="canvas" class="canvas-test" height="400px" width="1100px"></canvas>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <span class="hsl"></span>
+                <div class="col-md-6" style="text-align:center">
+                    <input type="text" id="hsl-bg-input" data-color-format="hex">
+                    <span class="hsl" id="hsl_bg"></span>
                 </div>
-                <div class="col-md-4">
-                    <span class="hsl"></span>
+                <div class="col-md-6"style="text-align:center">
+                    <input type="text" id="hsl-fg-input" data-color-format="hex">
+                    <span class="hsl" id="hsl_fg"></span>
                 </div>
-                <div class="col-md-4">
-                    <span class="hsl"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-2" style="text-align:center">
+                    <button type="button" class="btn btn-dark-custom" id="new-bg-button">
+                        new BACKGROUND
+                    </button>
                 </div>
+                <div class="col-md-2" style="text-align:center">
+                    <button type="button" class="btn btn-dark-custom" id="new-color-button">
+                        new colors
+                    </button>
+                </div>
+                <div class="col-md-2" style="text-align:center">
+                    <button type="button" class="btn btn-dark-custom" id="new-fg-button">
+                        new FOREGROUND
+                    </button>
+                </div>
+                <div class="col-md-3"></div>
             </div>
         </div>
     </div>
@@ -44,22 +62,6 @@
 </script>
 <script src="jquery-colorpickersliders/jquery.colorpickersliders.js"></script>
 <script src="script/runTest.js"></script>
-<script src="script/colourContrast.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        setTimeout(loadChartsList,500);
-        $("#charts-list").change(function(){
-            displayChart($(this).val());
-        })
-    });
-
-    function loadChartsList(){
-        displayChart(0);
-        inputColors.forEach(function(item, index){
-            $("#charts-list").append(new Option(item.chart_id,index));
-        });
-    }
-</script>
+<script src="script/colorsTest.js"></script>
 
 </html>

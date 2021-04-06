@@ -21,7 +21,7 @@
         <div class="row" style="margin-top:10px">
             <div class="col-md-12">
                 <div align="center">
-                    <canvas id="canvas" class="canvas-test" height="400px" width="1000px"></canvas>
+                    <canvas id="canvas" class="canvas-test" height="400px" width="1200px"></canvas>
                 </div>
             </div>
         </div>
