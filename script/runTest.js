@@ -56,7 +56,7 @@ class Rectangles{
         this.c.drawImage(tmpCanvas,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);*/
         if(this.whiteNoiseImg==null){
             this.whiteNoiseImg = new Image();
-            this.whiteNoiseImg.src = "files/whitenoise.png";
+            this.whiteNoiseImg.src = whiteNoiseFile;
             this.whiteNoiseImg.onload = (function(){
                 this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
                 $rewriteChartCallback.fire();

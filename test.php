@@ -16,7 +16,7 @@
 <?php include "components/header.php"; ?>
 
 <body>
-    <div class="jumbotron vertical-center">
+    <div class="vertical-center">
     <div class="container" id="test-container">
         <div class="row" style="margin-top:10px">
             <div class="col-md-12">
@@ -108,11 +108,6 @@
 </div>
 
 </body>
-<script type="text/javascript">
-    var gap = <?php echo getenv('TEST_GAP'); ?>;
-    var innerSize = <?php echo getenv('TEST_INNERSQUARE_SIZE'); ?>;
-    var outerSize = <?php echo getenv('TEST_OUTERSQUARE_SIZE'); ?>;
-</script>
 <script src="jquery-colorpickersliders/jquery.colorpickersliders.js"></script>
 <script src="script/runTest.js"></script>
 <script src="script/colourContrast.js"></script>

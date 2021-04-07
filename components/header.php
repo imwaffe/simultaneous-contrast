@@ -27,6 +27,7 @@
             var gap = <?php echo getenv('TEST_GAP'); ?>;
             var innerSize = <?php echo getenv('TEST_INNERSQUARE_SIZE'); ?>;
             var outerSize = <?php echo getenv('TEST_OUTERSQUARE_SIZE'); ?>;
-            var csvFile = <?php echo getenv('TEST_CSV_PATH'); ?>
+            var csvFile = <?php echo getenv('TEST_CSV_PATH'); ?>;
+            var whiteNoiseFile = <?php echo getenv('TEST_WHITENOISE_PATH'); ?>;
         </script>
     </head>
