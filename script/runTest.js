@@ -1,5 +1,6 @@
 class Rectangles{
     whiteNoiseImg = null;
+    onBackgroundLoadCallback = $.Callbacks();
 
     constructor(outerSize, innerSize, gap, canvas, colorPicker){
         this.c = canvas.getContext("2d");
@@ -22,6 +23,9 @@ class Rectangles{
 
         this.setFirstBGColor(colors.background_color);
         this.setSecondBGColor();
+        this.onBackgroundLoadCallback.add((function(){
+            this.setSecondFGColor(colors.second_foreground);
+        }).bind(this));
         this.setFirstFGColor(colors.first_foreground);
 
         //var nearlyRandomColor = RandomColor.nearlyRandomColor(tinycolor(colors.second_foreground));
@@ -56,6 +60,7 @@ class Rectangles{
             this.whiteNoiseImg.onload = (function(){
                 this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
                 $rewriteChartCallback.fire();
+                this.onBackgroundLoadCallback.fire();
             }).bind(this);
         }
         else
