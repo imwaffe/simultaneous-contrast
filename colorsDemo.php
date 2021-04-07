@@ -1,7 +1,5 @@
 <?php 
     session_start();
-    require_once("./components/DotEnv.php");
-    (new DotEnv('./.env'))->load();
 ?>
 
 <?php include "./components/header.php"; ?>
@@ -18,7 +16,7 @@
             <div class="row" style="margin-top:10px">
                 <div class="col-md-12">
                     <div align="center">
-                        <canvas id="canvas" class="canvas-test" height="400px" width="1000px"></canvas>
+                        <canvas id="canvas" class="canvas-test" height="400px" width="1100px"></canvas>
                     </div>
                 </div>
             </div>
@@ -37,12 +35,6 @@
     </div>
 </body>
 
-<script type="text/javascript">
-    var gap = <?php echo getenv('TEST_GAP'); ?>;
-    var innerSize = <?php echo getenv('TEST_INNERSQUARE_SIZE'); ?>;
-    var outerSize = <?php echo getenv('TEST_OUTERSQUARE_SIZE'); ?>;
-    var csvFile = "colors_demo.csv";
-</script>
 <script src="jquery-colorpickersliders/jquery.colorpickersliders.js"></script>
 <script src="script/runTest.js"></script>
 <script src="script/colourContrast.js"></script>

@@ -119,6 +119,7 @@ function setText(text){
 
 /* Reset the current chart (also used for initializing the first one) */
 function reset(){
+    lastTimeStamp = Date.now();
     actualTime = 0;
     displayChart(randomSequence[selectedColor]);
 }
@@ -173,4 +174,7 @@ function showColorsSlider(condition){
 
 $(document).ready(function(){
     $chartLoadedCallbacks.add(initColorPicker);
+    $("#resetButton").click(function(){
+        reset();
+    })
 });

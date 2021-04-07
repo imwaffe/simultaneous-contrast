@@ -21,7 +21,7 @@ function initColorPicker(){
         flat: true,
         //customswatches: "default-swatches",
         swatches: false,
-        previewformat: 'hex',
+        previewformat: 'hsl',
         connectedinput: "#hsl-bg-input",
         order: {
             hsl: 1,
@@ -48,7 +48,7 @@ function initColorPicker(){
         flat: true,
         //customswatches: "default-swatches",
         swatches: false,
-        previewformat: 'hex',
+        previewformat: 'hsl',
         connectedinput: "#hsl-fg-input",
         order: {
             hsl: 1,

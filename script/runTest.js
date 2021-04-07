@@ -1,4 +1,6 @@
 class Rectangles{
+    whiteNoiseImg = null;
+
     constructor(outerSize, innerSize, gap, canvas, colorPicker){
         this.c = canvas.getContext("2d");
         this.colorPicker = colorPicker;
@@ -21,6 +23,9 @@ class Rectangles{
         this.setFirstBGColor(colors.background_color);
         this.setSecondBGColor();
         this.setFirstFGColor(colors.first_foreground);
+
+        //var nearlyRandomColor = RandomColor.nearlyRandomColor(tinycolor(colors.second_foreground));
+        //this.setSecondFGColor(nearlyRandomColor.toHexString());
         this.setSecondFGColor(colors.second_foreground);
     }
 
@@ -30,14 +35,12 @@ class Rectangles{
         this.c.fillRect(this.leftOuterMargin, this.topOuterMargin, this.outerSize, this.outerSize);
     }
 
-    setSecondBGColor(){/*
-        this.c.fillStyle = color;
-        this.c.fillRect(this.leftOuterMargin, this.topOuterMargin+this.outerSize+this.gap, this.outerSize, this.outerSize);*/
-        var tmpCanvas = document.createElement('canvas');
-        tmpCanvas.setAttribute("width","100%");
-        tmpCanvas.setAttribute("height","100%");
+    setSecondBGColor(){
+        /*var tmpCanvas = document.createElement('canvas');
+        tmpCanvas.setAttribute("width","150%");
+        tmpCanvas.setAttribute("height","150%");
         var tmpCtx = tmpCanvas.getContext('2d');
-        var imageData = tmpCtx.createImageData(200,200);
+        var imageData = tmpCtx.createImageData(300,300);
         for(var i=0; i<imageData.data.length; i+=4){
             var dot=Math.floor(Math.random()*255);
             imageData.data[i] = dot;
@@ -46,8 +49,17 @@ class Rectangles{
             imageData.data[i+3] = 255;
         }
         tmpCtx.putImageData(imageData,0,0);
-        //this.c.putImageData(tmpCtx.getImageData(0,0,this.outerSize,this.outerSize), this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin);
-        this.c.drawImage(tmpCanvas,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
+        this.c.drawImage(tmpCanvas,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);*/
+        if(this.whiteNoiseImg==null){
+            this.whiteNoiseImg = new Image();
+            this.whiteNoiseImg.src = "files/whitenoise.png";
+            this.whiteNoiseImg.onload = (function(){
+                this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
+                $rewriteChartCallback.fire();
+            }).bind(this);
+        }
+        else
+            this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
     }
 
     setFirstFGColor(color){
