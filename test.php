@@ -33,18 +33,16 @@
             <div class="col-md-2"></div>
         </div>
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-4" align="center">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" align="center">
                 <button type="button" class="btn btn-danger" id="resetButton">
                     <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> reset
                 </button>
-            </div>
-            <div class="col-md-6" align="center">
                 <button type="button" class="btn btn-dark-custom" data-toggle="modal" data-target="#confirmModal">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> conferma e prosegui
                 </button>
             </div>
-            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
         </div>
     </div>
 
