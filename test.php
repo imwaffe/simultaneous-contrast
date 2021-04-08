@@ -48,11 +48,35 @@
         </div>
     </div>
 
-    <div class="container" id="wait-message" style="display: none;">
+    <!-- WAIT MESSAGE -->
+    <div class="container" id="wait-message" style="display:none;">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
+                <div class="spinner-border text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
                 <h1>attendi...</h1>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+    <!-- CONNECTION ERROR MESSAGE -->
+    <div class="container" id="connection-error-message" style="display:none;">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h1>C'è un problema :(</h1>
+                <p>
+                    È stata persa la connessione col server, controlla la tua connessione di rete e riprova più tardi.
+                </p>
+                <p style="text-align: right">
+                    <i>Scusaci per l'inconveniente,<br>grazie!</i>
+                </p>
+                <p style="text-align: center">
+                    <a class="btn btn-success" href="test.php"><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>  torna alla home</a>
+                </p>
             </div>
             <div class="col-md-2"></div>
         </div>
@@ -168,6 +192,17 @@
     function alertOnLeaving(e){
         e.preventDefault();
         e.returnValue = "";
+    }
+
+    function waitMsgAnimate() {
+        $('#wait-message').fadeTo(2000,0.1,function(){
+            $(this).fadeTo(2000,1,function(){
+                waitMsgAnimate();
+            });
+        });
+    }
+    function waitMsgAnimateStop(){
+        $('#wait-message').stop(true).fadeTo(500,1);
     }
 </script>
 

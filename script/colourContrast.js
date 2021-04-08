@@ -85,7 +85,7 @@ var lastTimeStamp = Date.now();
 $("#next").click(function(){
     $("#test-container").hide();
     $("#wait-message").show();
-
+    waitMsgAnimate();
     addData().done(function(){
         selectedColor++;
         if(selectedColor>=inputColors.length){
@@ -93,10 +93,17 @@ $("#next").click(function(){
             window.location.replace("thankyou.php");
         }
         $("#test-container").show();
+        waitMsgAnimateStop();
         $("#wait-message").hide();
         lastTimeStamp = Date.now();
         actualTime = 0;
         displayChart(randomSequence[selectedColor]);
+    }).fail(function(){
+        window.removeEventListener('beforeunload',alertOnLeaving);
+        $("#test-container").hide();
+        waitMsgAnimateStop();
+        $("#wait-message").hide();
+        $("#connection-error-message").show();
     });
 });
 

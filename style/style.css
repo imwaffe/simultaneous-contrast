@@ -72,3 +72,10 @@ body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom
 	margin-top:100px;
 	font-size:9pt;
 }
+
+#wait-message h1 {
+    color: #dddddd;
+}
+#connection-error-message {
+    color: #dddddd;
+}
