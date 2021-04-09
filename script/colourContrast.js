@@ -42,9 +42,12 @@ function addData(){
         actual_color: getCurrentActualColor().toHexString(),
         picked_color: getCurrentPickedColor().toHexString(),
         euclid_dist: get3DEuclidDist(getCurrentActualColor(),getCurrentPickedColor()),
-        hue_delta: get2DEuclidDist(getCurrentActualColor().toHsl().h, getCurrentPickedColor().toHsl().h),
-        saturation_delta: get2DEuclidDist(getCurrentActualColor().toHsl().s, getCurrentPickedColor().toHsl().s)*100,
-        luma_delta: get2DEuclidDist(getCurrentActualColor().toHsl().l, getCurrentPickedColor().toHsl().l)*100,
+        hue_dist: get2DEuclidDist(getCurrentActualColor().toHsl().h, getCurrentPickedColor().toHsl().h),
+        saturation_dist: get2DEuclidDist(getCurrentActualColor().toHsl().s, getCurrentPickedColor().toHsl().s)*100,
+        luma_dist: get2DEuclidDist(getCurrentActualColor().toHsl().l, getCurrentPickedColor().toHsl().l)*100,
+        hue_delta: getCurrentPickedColor().toHsl().h-getCurrentActualColor().toHsl().h,
+        saturation_delta: (getCurrentPickedColor().toHsl().s-getCurrentActualColor().toHsl().s)*100,
+        luma_delta: (getCurrentPickedColor().toHsl().l-getCurrentActualColor().toHsl().l)*100,
         time: actualTime
     }).done(saveImage());
 }
