@@ -18,11 +18,11 @@
 		}
 
 		if(!file_exists($testRoot.$testResultsFilename)){
-			$heading = '"chart_id","background_color","actual_color","picked_color","euclid_distance","time"';
+			$heading = '"chart_id","background_color","actual_color","picked_color","euclid_distance","hue_delta","saturation_delta","luma_delta","time"';
 			file_put_contents($testRoot.$testResultsFilename, $heading.PHP_EOL);
 		}
 
-		$row = '"'.$_POST["chart_id"].'","'.$_POST["bg_color"].'","'.$_POST["actual_color"].'","'.$_POST["picked_color"].'","'.$_POST["euclid_dist"].'","'.$_POST["time"].'"';
+		$row = '"'.$_POST["chart_id"].'","'.$_POST["bg_color"].'","'.$_POST["actual_color"].'","'.$_POST["picked_color"].'","'.$_POST["euclid_dist"].'","'.$_POST["hue_delta"].'","'.$_POST["saturation_delta"].'","'.$_POST["luma_delta"].'","'.$_POST["time"].'"';
 		file_put_contents($testRoot.$testResultsFilename, $row.PHP_EOL, FILE_APPEND | LOCK_EX);
 	}
 

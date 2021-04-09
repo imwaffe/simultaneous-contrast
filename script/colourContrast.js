@@ -38,10 +38,13 @@ $.get( ((typeof csvFile==='undefined')?"colors.csv":csvFile), function(CSVdata) 
 function addData(){
     return $.post("functions/saveResults.php?action=add",{
         chart_id: getChartID(),
-        bg_color: getCurrentBgColor(),
-        actual_color: getCurrentActualColor(),
-        picked_color: getCurrentPickedColor(),
-        euclid_dist: getEuclidDist(getCurrentActualColor(),getCurrentPickedColor()),
+        bg_color: getCurrentBgColor().toHexString(),
+        actual_color: getCurrentActualColor().toHexString(),
+        picked_color: getCurrentPickedColor().toHexString(),
+        euclid_dist: get3DEuclidDist(getCurrentActualColor(),getCurrentPickedColor()),
+        hue_delta: get2DEuclidDist(getCurrentActualColor().toHsl().h, getCurrentPickedColor().toHsl().h),
+        saturation_delta: get2DEuclidDist(getCurrentActualColor().toHsl().s, getCurrentPickedColor().toHsl().s)*100,
+        luma_delta: get2DEuclidDist(getCurrentActualColor().toHsl().l, getCurrentPickedColor().toHsl().l)*100,
         time: actualTime
     }).done(saveImage());
 }
@@ -150,22 +153,25 @@ function download(filename) {
 }
 
 function getCurrentActualColor(){
-    return inputColors[randomSequence[selectedColor]].first_foreground;
+    return tinycolor(inputColors[randomSequence[selectedColor]].first_foreground);
 }
 function getCurrentPickedColor(){
-    return inputColors[randomSequence[selectedColor]].picked_color;
+    return tinycolor(inputColors[randomSequence[selectedColor]].picked_color);
 }
 function getCurrentBgColor(){
-    return inputColors[randomSequence[selectedColor]].background_color;
+    return tinycolor(inputColors[randomSequence[selectedColor]].background_color);
 }
 function getChartID(){
     return inputColors[randomSequence[selectedColor]].chart_id;
 }
 
-function getEuclidDist(color1, color2){
-    color1 = tinycolor(color1).toRgb();
-    color2 = tinycolor(color2).toRgb();
+function get3DEuclidDist(color1, color2){
+    color1 = color1.toRgb();
+    color2 = color2.toRgb();
     return Math.sqrt(Math.pow((color1.r-color2.r),2)+Math.pow((color1.g-color2.g),2)+Math.pow((color1.b-color2.b),2));
+}
+function get2DEuclidDist(val1, val2){
+    return Math.sqrt(Math.pow((val1-val2),2));
 }
 
 function showColorsSlider(condition){
