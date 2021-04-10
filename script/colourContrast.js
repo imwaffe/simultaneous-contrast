@@ -177,7 +177,7 @@ function get2DEuclidDist(val1, val2){
     return Math.sqrt(Math.pow((val1-val2),2));
 }
 function getHueDist(color1, color2){
-    var raw_dist = Math.round(get2DEuclidDist(color1.toHsl().h, color2.toHsl().h));
+    var raw_dist = get2DEuclidDist(color1.toHsl().h, color2.toHsl().h);
     return Math.min(raw_dist, 360-raw_dist);
 }
 
