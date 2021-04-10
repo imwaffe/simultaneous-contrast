@@ -42,7 +42,7 @@ function addData(){
         actual_color: getCurrentActualColor().toHexString(),
         picked_color: getCurrentPickedColor().toHexString(),
         euclid_dist: get3DEuclidDist(getCurrentActualColor(),getCurrentPickedColor()),
-        hue_dist: get2DEuclidDist(getCurrentActualColor().toHsl().h, getCurrentPickedColor().toHsl().h),
+        hue_dist: getHueDist(getCurrentActualColor(), getCurrentPickedColor()),
         saturation_dist: get2DEuclidDist(getCurrentActualColor().toHsl().s, getCurrentPickedColor().toHsl().s)*100,
         luma_dist: get2DEuclidDist(getCurrentActualColor().toHsl().l, getCurrentPickedColor().toHsl().l)*100,
         hue_delta: getCurrentPickedColor().toHsl().h-getCurrentActualColor().toHsl().h,
@@ -175,6 +175,10 @@ function get3DEuclidDist(color1, color2){
 }
 function get2DEuclidDist(val1, val2){
     return Math.sqrt(Math.pow((val1-val2),2));
+}
+function getHueDist(color1, color2){
+    var raw_dist = Math.round(get2DEuclidDist(color1.toHsl().h, color2.toHsl().h));
+    return Math.min(raw_dist, 360-raw_dist);
 }
 
 function showColorsSlider(condition){
