@@ -21,10 +21,10 @@ function initColorPicker(){
         flat: true,
         //customswatches: "default-swatches",
         swatches: false,
-        previewformat: 'hsl',
+        previewformat: 'rgb',
         connectedinput: "#hsl-bg-input",
         order: {
-            hsl: 1,
+            rgb: 1,
             preview: 2
         },
         labels: {
@@ -48,10 +48,10 @@ function initColorPicker(){
         flat: true,
         //customswatches: "default-swatches",
         swatches: false,
-        previewformat: 'hsl',
+        previewformat: 'rgb',
         connectedinput: "#hsl-fg-input",
         order: {
-            hsl: 1,
+            rgb: 1,
             preview: 2
         },
         labels: {

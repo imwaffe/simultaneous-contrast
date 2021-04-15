@@ -24,32 +24,13 @@
             </div>
             <div class="row">
                 <div class="col-md-6" style="text-align:center">
-                    <input type="text" id="hsl-bg-input" data-color-format="hex">
+                    <input type="text" id="hsl-bg-input" data-color-format="rgb">
                     <span class="hsl" id="hsl_bg"></span>
                 </div>
                 <div class="col-md-6"style="text-align:center">
-                    <input type="text" id="hsl-fg-input" data-color-format="hex">
+                    <input type="text" id="hsl-fg-input" data-color-format="rgb">
                     <span class="hsl" id="hsl_fg"></span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-2" style="text-align:center">
-                    <button type="button" class="btn btn-dark-custom" id="new-bg-button">
-                        new BACKGROUND
-                    </button>
-                </div>
-                <div class="col-md-2" style="text-align:center">
-                    <button type="button" class="btn btn-dark-custom" id="new-color-button">
-                        new colors
-                    </button>
-                </div>
-                <div class="col-md-2" style="text-align:center">
-                    <button type="button" class="btn btn-dark-custom" id="new-fg-button">
-                        new FOREGROUND
-                    </button>
-                </div>
-                <div class="col-md-3"></div>
             </div>
         </div>
     </div>
