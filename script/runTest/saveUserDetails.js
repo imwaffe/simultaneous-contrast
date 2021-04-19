@@ -16,6 +16,10 @@ export function addSavedDetailsCallback(callback){
 $(document).ready(function(){
 	var validForm = false;
 
+	$("#userDetailsForm").on("submit",function(e){
+	    e.preventDefault();
+	});
+	
 	$("#userDetailsModal").modal("show");
 
 	$("#userDetailsModal").on("hidden.bs.modal", function(){
