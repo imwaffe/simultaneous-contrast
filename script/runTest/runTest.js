@@ -1,7 +1,7 @@
 import * as jQuery from "/libraries/jquery-1.9.0.min.js";
 import * as Bootstrap from "/libraries/bootstrap/js/bootstrap.min.js";
-import {next} from "/script/colourContrast.js";
-import DataSaver from "./dataSaver.js";
+import {next} from "/script/chartsLoader.js";
+import DataSaver from "/script/runTest/dataSaver.js";
 
 export var actualTime = 0;
 var lastTimeStamp = Date.now();

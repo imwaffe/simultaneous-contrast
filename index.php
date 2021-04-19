@@ -132,7 +132,7 @@
     </script>
 
     <script type="module">
-        import {addRewriteChartCallback, canvasDrawer} from "/script/colourContrast.js";
+        import {addRewriteChartCallback, canvasDrawer} from "/script/chartsLoader.js";
 
         function drawExampleCircles(){
             canvasDrawer.c.lineWidth="5";
@@ -147,7 +147,6 @@
         }
 
         $(document).ready(function(){
-            //$rewriteChartCallback.add(drawExampleCircles);
             addRewriteChartCallback(drawExampleCircles);
             canvasDrawer.onBackgroundLoadCallback.add(drawExampleCircles);
         })

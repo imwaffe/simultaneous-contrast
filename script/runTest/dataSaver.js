@@ -1,6 +1,6 @@
 import * as jQuery from "/libraries/jquery-1.9.0.min.js";
-import ColorUtils from "/script/colorUtils.js";
-import {getChartID, getCurrentBgColor, getCurrentPickedColor, getCurrentActualColor, CANVAS_ID} from "/script/colourContrast.js";
+import ColorUtils from "/script/colorUtils/colorUtils.js";
+import {getChartID, getCurrentBgColor, getCurrentPickedColor, getCurrentActualColor, CANVAS_ID} from "/script/chartsLoader.js";
 
 export default class DataSaver{
     static addData(actualTime){

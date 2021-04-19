@@ -21,7 +21,7 @@
         <script src="/libraries/tinycolor.js"></script>
         <script src="/libraries/jquery.csv.min.js"></script>
 
-        <script src="/script/randomColor.js"></script>
+        <script src="/script/colorUtils/randomColor.js"></script>
 
         <script type="text/javascript">
             var gap = <?php echo getenv('TEST_GAP'); ?>;

@@ -125,6 +125,6 @@
 
 </body>
 
-<script type="module" src="/script/runTest.js"></script>
+<script type="module" src="/script/runTest/runTest.js"></script>
 
 <?php include $_SERVER['DOCUMENT_ROOT']."components/footer.php"; ?>

@@ -1,2 +1,2 @@
-	<script type="module" src="/script/colourContrast.js"></script>
+	<script type="module" src="/script/chartsLoader.js"></script>
 </html>
