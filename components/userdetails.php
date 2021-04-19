@@ -34,7 +34,7 @@
                     Scrivi un soprannome che ci aiuterà a distinguere i vari test mantenendo l'anonimato
                   </span>
                 </label>
-                  <input type="text" class="form-control" id="user_nickname" placeholder="es: juliet93" required>
+                  <input type="text" class="form-control" id="user_nickname" placeholder="es: juliet-reds" required>
               </div>
               <div class="form-group row">
                 <label for="user_gender" class="col-form-label">
@@ -47,6 +47,7 @@
                   <option value="" selected disabled hidden>seleziona...</option>
                   <option value="female">Femminile</option>
                   <option value="male">Maschile</option>
+                  <option value="intersex">Intersessuale</option>
                 </select>
               </div>
               <div class="form-group row">

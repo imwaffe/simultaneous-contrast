@@ -124,7 +124,7 @@
                   <div class="modal-body">
                     <p>
                         Premendo su <b><i>Inizia il test</i></b> inizierai effettivamente il test.<br>
-                        Il test richiede meno di cinque minuti e non può essere interrotto.
+                        Il test richiede meno di dieci minuti e non può essere interrotto.
                     </p>
                     <p>
                         <b>Sei sicuro di voler iniziare?</b>

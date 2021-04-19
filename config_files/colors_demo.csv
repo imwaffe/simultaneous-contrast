@@ -1,4 +1,4 @@
 chart_id,background_color,first_foreground,second_foreground,color
-51,#d5fe14,#d4975e,#d4975e,true
-52,#0e48ad,#6a3bc7,#6a3bc7,true
-53,#eadd6b,#c8cb74,#c8cb75,true
+1,#d5fe14,#d4975e,#ffeb43,true
+2,#0e48ad,#6a3bc7,#55db1a,true
+3,#eadd6b,#c8cb74,#db1a2c,true
