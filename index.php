@@ -11,7 +11,7 @@
         $_SESSION['visited_index'] = true;
 ?>
 
-<?php "components/header.php"; ?>
+<?php include "components/header.php"; ?>
 
 <script>
     let supported = false;

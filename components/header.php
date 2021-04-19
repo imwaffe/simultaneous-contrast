@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    require_once("DotEnv.php");
+    require_once("components/DotEnv.php");
     (new DotEnv('.env'))->load();
 ?>
 
