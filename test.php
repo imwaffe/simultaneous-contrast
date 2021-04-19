@@ -10,7 +10,7 @@
     $_SESSION['session_id'] = "test_".date("d-m-Y_G-i-s");
 ?>
 
-<?php include $_SERVER['DOCUMENT_ROOT']."components/header.php"; ?>
+<?php include $_SERVER['DOCUMENT_ROOT']."/components/header.php"; ?>
 
 <link href="/style/test-style.css" rel="stylesheet" type="text/css" media="all">
 

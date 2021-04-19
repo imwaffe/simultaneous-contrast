@@ -6,7 +6,7 @@
     $_SESSION['visited_test'] = false;
 ?>
 
-<?php include $_SERVER['DOCUMENT_ROOT']."components/header.php"; ?>
+<?php include $_SERVER['DOCUMENT_ROOT']."/components/header.php"; ?>
 
 <style>
 	.footer-row{
