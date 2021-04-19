@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     require_once("DotEnv.php");
-    (new DotEnv($_SERVER['DOCUMENT_ROOT'].'/.env'))->load();
+    (new DotEnv('.env'))->load();
 ?>
 
 <html lang="it">

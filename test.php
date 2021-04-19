@@ -10,7 +10,7 @@
     $_SESSION['session_id'] = "test_".date("d-m-Y_G-i-s");
 ?>
 
-<?php include $_SERVER['DOCUMENT_ROOT']."/components/header.php"; ?>
+<?php include "components/header.php"; ?>
 
 <link href="/style/test-style.css" rel="stylesheet" type="text/css" media="all">
 
@@ -82,7 +82,7 @@
 </div>
 
 <!-- User details modal -->
-<?php include $_SERVER['DOCUMENT_ROOT']."components/userdetails.php"; ?>
+<?php include "components/userdetails.php"; ?>
 
 <!-- Confirmation modal -->
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModal" aria-hidden="true">
@@ -135,4 +135,4 @@
 
 <script type="module" src="/script/runTest/runTest.js"></script>
 
-<?php include $_SERVER['DOCUMENT_ROOT']."components/footer.php"; ?>
+<?php include "components/footer.php"; ?>

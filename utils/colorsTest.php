@@ -1,7 +1,7 @@
 <?php 
     session_start();
-    require_once($_SERVER['DOCUMENT_ROOT']."/components/DotEnv.php");
-    (new DotEnv($_SERVER['DOCUMENT_ROOT']."/.env"))->load();
+    require_once("components/DotEnv.php");
+    (new DotEnv(".env"))->load();
 ?>
 
 <?php include $_SERVER['DOCUMENT_ROOT']."/components/header.php"; ?>
@@ -43,4 +43,4 @@
 </script>
 <script src="/script/colorsTest.js"></script>
 
-<?php include $_SERVER['DOCUMENT_ROOT']."components/footer.php"; ?>
+<?php include "components/footer.php"; ?>

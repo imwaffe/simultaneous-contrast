@@ -2,7 +2,7 @@
     session_start();
 ?>
 
-<?php include $_SERVER['DOCUMENT_ROOT']."/components/header.php"; ?>
+<?php include "components/header.php"; ?>
 <style>
     .canvas-test{
         margin-top: 0px !important;
@@ -53,4 +53,4 @@
     }
 </script>
 
-<?php include $_SERVER['DOCUMENT_ROOT']."components/footer.php"; ?>
+<?php include "components/footer.php"; ?>

@@ -3,7 +3,7 @@
     $_SESSION['visited_index'] = false;
     $_SESSION['visited_test'] = false;
     
-    require_once $_SERVER['DOCUMENT_ROOT']."/libraries/Mobile_Detect.php";
+    require_once "libraries/Mobile_Detect.php";
     $detect = new Mobile_Detect;
     if($detect->isMobile())
         header('Location: /onlymobile.php');
@@ -11,7 +11,7 @@
         $_SESSION['visited_index'] = true;
 ?>
 
-<?php include $_SERVER['DOCUMENT_ROOT']."/components/header.php"; ?>
+<?php "components/header.php"; ?>
 
 <script>
     let supported = false;
@@ -168,4 +168,4 @@
         })
     </script>
 
-<?php include $_SERVER['DOCUMENT_ROOT']."components/footer.php"; ?>
+<?php include "components/footer.php"; ?>
