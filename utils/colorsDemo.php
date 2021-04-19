@@ -2,7 +2,7 @@
     session_start();
 ?>
 
-<?php include "./components/header.php"; ?>
+<?php include $_SERVER['DOCUMENT_ROOT']."/components/header.php"; ?>
 <style>
     .canvas-test{
         margin-top: 0px !important;
@@ -35,9 +35,7 @@
     </div>
 </body>
 
-<script src="jquery-colorpickersliders/jquery.colorpickersliders.js"></script>
-<script src="script/runTest.js"></script>
-<script src="script/colourContrast.js"></script>
+
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -55,4 +53,4 @@
     }
 </script>
 
-</html>
+<?php include $_SERVER['DOCUMENT_ROOT']."components/footer.php"; ?>

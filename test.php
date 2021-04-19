@@ -2,18 +2,15 @@
     session_start();
 
     if(!isset($_SESSION['visited_index']) || $_SESSION['visited_index']==false)
-        header("location: index.php");
+        header("location: /");
 
     $_SESSION['visited_index'] = false;
     $_SESSION['visited_test'] = false;
 
     $_SESSION['session_id'] = "test_".date("d-m-Y_G-i-s");
-
-    require_once("components/DotEnv.php");
-    (new DotEnv('.env'))->load();
 ?>
 
-<?php include "components/header.php"; ?>
+<?php include $_SERVER['DOCUMENT_ROOT']."components/header.php"; ?>
 
 <body>
     <div class="vertical-center">
@@ -51,9 +48,6 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div class="spinner-border text-light" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
                 <h1>attendi...</h1>
             </div>
             <div class="col-md-2"></div>
@@ -130,78 +124,7 @@
 </div>
 
 </body>
-<script src="jquery-colorpickersliders/jquery.colorpickersliders.js"></script>
-<script src="script/runTest.js"></script>
-<script src="script/colourContrast.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        $(".modal").on("hide.bs.modal", function(){
-            lastTimeStamp = Date.now();
-        })
-        $(".modal").on("show.bs.modal", function(){
-            actualTime += (Date.now()-lastTimeStamp);
-        })
+<script type="module" src="/script/runTest.js"></script>
 
-        $("#goFullScreen").click(function(){
-            openFullscreen();
-        });
-        $("#fullScreenModal").on("hidden.bs.modal", function () {
-            exitFullScreenHandler();
-        });
-
-        $("#next").click(function(){
-            exitFullScreenHandler();
-        });
-
-        if (document.addEventListener){
-            document.addEventListener('fullscreenchange', exitFullScreenHandler, false);
-            document.addEventListener('mozfullscreenchange', exitFullScreenHandler, false);
-            document.addEventListener('MSFullscreenChange', exitFullScreenHandler, false);
-            document.addEventListener('webkitfullscreenchange', exitFullScreenHandler, false);
-        }
-
-        window.addEventListener('beforeunload', alertOnLeaving);
-
-
-        $("#fullScreenModal").modal("show");
-    });
-
-    function exitFullScreenHandler(){
-        if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement){
-            $("#fullScreenModal").modal("show");
-        }
-    }
-
-    var elem = document.documentElement;
-    function openFullscreen() {
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            elem = window.top.document.body;
-            elem.msRequestFullscreen();
-        }
-    }
-
-    function alertOnLeaving(e){
-        e.preventDefault();
-        e.returnValue = "";
-    }
-
-    function waitMsgAnimate() {
-        $('#wait-message').fadeTo(2000,0.1,function(){
-            $(this).fadeTo(2000,1,function(){
-                waitMsgAnimate();
-            });
-        });
-    }
-    function waitMsgAnimateStop(){
-        $('#wait-message').stop(true).fadeTo(500,1);
-    }
-</script>
-
-</html>
+<?php include $_SERVER['DOCUMENT_ROOT']."components/footer.php"; ?>

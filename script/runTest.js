@@ -1,97 +1,111 @@
-class Rectangles{
-    whiteNoiseImg = null;
-    onBackgroundLoadCallback = $.Callbacks();
+import * as jQuery from "/libraries/jquery-1.9.0.min.js";
+import * as Bootstrap from "/libraries/bootstrap/js/bootstrap.min.js";
+import {next} from "/script/colourContrast.js";
+import DataSaver from "./dataSaver.js";
 
-    constructor(outerSize, innerSize, gap, canvas, colorPicker){
-        this.c = canvas.getContext("2d");
-        this.colorPicker = colorPicker;
+export var actualTime = 0;
+var lastTimeStamp = Date.now();
 
-        var width = canvas.width;
-        var height = canvas.height;
+$(document).ready(function(){
+    $(".modal").on("hide.bs.modal", function(){
+        startTimer();
+    })
+    $(".modal").on("show.bs.modal", function(){
+        pauseTimer();
+    })
 
-        this.outerSize = outerSize;
-        this.innerSize = innerSize;
-        this.gap = gap;
-        this.leftOuterMargin = (width-(outerSize*2+gap))/2;
-        this.leftInnerMargin = this.leftOuterMargin+this.outerSize/2-this.innerSize/2;
-        this.topOuterMargin = (height-outerSize)/2;
-        this.topInnerMargin = height/2-innerSize/2;
+    $("#goFullScreen").click(function(){
+        openFullscreen();
+    });
+    $("#fullScreenModal").on("hidden.bs.modal", function () {
+        exitFullScreenHandler();
+    });
+
+    $("#next").click(function(){
+        exitFullScreenHandler();
+    });
+
+    if (document.addEventListener){
+        document.addEventListener('fullscreenchange', exitFullScreenHandler, false);
+        document.addEventListener('mozfullscreenchange', exitFullScreenHandler, false);
+        document.addEventListener('MSFullscreenChange', exitFullScreenHandler, false);
+        document.addEventListener('webkitfullscreenchange', exitFullScreenHandler, false);
     }
 
-    init(colors){
-        this.colorPicker.trigger("colorpickersliders.updateColor", colors.second_foreground);
+    window.addEventListener('beforeunload', alertOnLeaving);
 
-        this.setFirstBGColor(colors.background_color);
-        this.setSecondBGColor();
-        this.onBackgroundLoadCallback.add((function(){
-            this.setSecondFGColor(colors.second_foreground);
-        }).bind(this));
-        this.setFirstFGColor(colors.first_foreground);
+    $("#fullScreenModal").modal("show");
 
-        //var nearlyRandomColor = RandomColor.nearlyRandomColor(tinycolor(colors.second_foreground));
-        //this.setSecondFGColor(nearlyRandomColor.toHexString());
-        this.setSecondFGColor(colors.second_foreground);
-    }
+    $("#next").click(function(){
+        $("#test-container").hide();
+        $("#wait-message").show();
+        waitMsgAnimate();
+        DataSaver.addData(actualTime).done(function(){
+            if(!next()){
+                window.removeEventListener('beforeunload',alertOnLeaving);
+                window.location.replace("thankyou.php");
+            }
+            waitMsgAnimateStop();
+            $("#wait-message").hide();
+            $("#test-container").show();
+            resetTimer();
+        }).fail(function(){
+            window.removeEventListener('beforeunload',alertOnLeaving);
+            $("#test-container").hide();
+            waitMsgAnimateStop();
+            $("#wait-message").hide();
+            $("#connection-error-message").show();
+        });
+    });
 
+    $("#resetButton").click(function(){
+        resetTimer();
+    })
+});
 
-    setFirstBGColor(color){
-        this.c.fillStyle = color;
-        this.c.fillRect(this.leftOuterMargin, this.topOuterMargin, this.outerSize, this.outerSize);
-    }
-
-    setSecondBGColor(){
-        /*var tmpCanvas = document.createElement('canvas');
-        tmpCanvas.setAttribute("width","150%");
-        tmpCanvas.setAttribute("height","150%");
-        var tmpCtx = tmpCanvas.getContext('2d');
-        var imageData = tmpCtx.createImageData(300,300);
-        for(var i=0; i<imageData.data.length; i+=4){
-            var dot=Math.floor(Math.random()*255);
-            imageData.data[i] = dot;
-            imageData.data[i+1] = dot;
-            imageData.data[i+2] = dot;
-            imageData.data[i+3] = 255;
-        }
-        tmpCtx.putImageData(imageData,0,0);
-        this.c.drawImage(tmpCanvas,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);*/
-        if(this.whiteNoiseImg==null){
-            this.whiteNoiseImg = new Image();
-            this.whiteNoiseImg.src = whiteNoiseFile;
-            this.whiteNoiseImg.onload = (function(){
-                this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
-                $rewriteChartCallback.fire();
-                this.onBackgroundLoadCallback.fire();
-            }).bind(this);
-        }
-        else
-            this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
-    }
-
-    setFirstFGColor(color){
-        this.c.fillStyle = color;
-        this.c.fillRect(this.leftInnerMargin, this.topInnerMargin, this.innerSize, this.innerSize);
-    }
-
-    setSecondFGColor(color){
-        this.c.fillStyle = color;
-        this.c.fillRect(this.leftInnerMargin+this.outerSize+this.gap, this.topInnerMargin, this.innerSize, this.innerSize);
-    }
-
-    setFGColor(color){
-        this.setFirstFGColor(color);
-        this.setSecondFGColor(color);
-    }
-
-    getLeftMarginSecondFG(){
-        return this.leftInnerMargin+this.outerSize+this.gap+this.innerSize/2;
-    }
-    getLeftMarginFirstFG(){
-        return this.leftInnerMargin+this.innerSize/2;
-    }
-    getTopMarginFG(){
-        return this.topInnerMargin+this.innerSize/2;
+function exitFullScreenHandler(){
+    if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement){
+        $("#fullScreenModal").modal("show");
     }
 }
 
-var canvasDrawer;
-canvasDrawer = new Rectangles(outerSize, innerSize, gap, document.getElementById("canvas"), $("#hsl"));
+var elem = document.documentElement;
+function openFullscreen() {
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+        elem = window.top.document.body;
+        elem.msRequestFullscreen();
+    }
+}
+
+function alertOnLeaving(e){
+    e.preventDefault();
+    e.returnValue = "";
+}
+
+function waitMsgAnimate() {
+    $('#wait-message').fadeTo(2000,0.1,function(){
+        $(this).fadeTo(2000,1,function(){
+            waitMsgAnimate();
+        });
+    });
+}
+function waitMsgAnimateStop(){
+    $('#wait-message').stop(true).fadeTo(500,1);
+}
+
+function startTimer(){
+    lastTimeStamp = Date.now();
+}
+function pauseTimer(){
+    actualTime += (Date.now()-lastTimeStamp);
+}
+function resetTimer(){
+    lastTimeStamp = Date.now();
+    actualTime = 0;
+}

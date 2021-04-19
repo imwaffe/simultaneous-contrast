@@ -1,5 +1,12 @@
+import * as jQuery from "/libraries/jquery-1.9.0.min.js";
+import * as jQueryCsv from "/libraries/jquery.csv.min.js";
+import * as ColorPicker from "/libraries/jquery-colorpickersliders/jquery.colorpickersliders.js";
+import {Rectangles} from "/script/canvasDrawer.js";
+
+export var canvasDrawer = new Rectangles(outerSize, innerSize, gap, document.getElementById("canvas"), $("#hsl"));
+
 /* Canvas ID */
-const CANVAS_ID = "canvas";
+export const CANVAS_ID = "canvas";
 
 /* Init black empty canvas and sets context variables */
 var c = document.getElementById(CANVAS_ID).getContext("2d");
@@ -9,6 +16,8 @@ c.beginPath();
 c.fillStyle = "#000000";
 c.fillRect(0, 0, width, height);
 
+var $rewriteChartCallback = $.Callbacks();
+var $nextChartCallback = $.Callbacks();
 
 /* Generate a random sequence, so that everytime the page is loaded the charts are displayed in different order */
 var selectedColor = 0;  //Index used with randomSequence array to get the actual chart number
@@ -35,19 +44,34 @@ $.get( ((typeof csvFile==='undefined')?"colors.csv":csvFile), function(CSVdata) 
     reset();
 });
 
+/*
+function waitMsgAnimate() {
+    $('#wait-message').fadeTo(2000,0.1,function(){
+        $(this).fadeTo(2000,1,function(){
+            waitMsgAnimate();
+        });
+    });
+}
+function waitMsgAnimateStop(){
+    $('#wait-message').stop(true).fadeTo(500,1);
+}
+*/
+
+/*
 function addData(){
+    var colors = new ColorUtils(getCurrentPickedColor(), getCurrentActualColor());
     return $.post("functions/saveResults.php?action=add",{
         chart_id: getChartID(),
         bg_color: getCurrentBgColor().toHexString(),
         actual_color: getCurrentActualColor().toHexString(),
         picked_color: getCurrentPickedColor().toHexString(),
-        euclid_dist: get3DEuclidDist(getCurrentActualColor(),getCurrentPickedColor()),
-        hue_dist: getHueDist(getCurrentActualColor(), getCurrentPickedColor()),
-        saturation_dist: get2DEuclidDist(getCurrentActualColor().toHsl().s, getCurrentPickedColor().toHsl().s)*100,
-        luma_dist: get2DEuclidDist(getCurrentActualColor().toHsl().l, getCurrentPickedColor().toHsl().l)*100,
-        hue_delta: getCurrentPickedColor().toHsl().h-getCurrentActualColor().toHsl().h,
-        saturation_delta: (getCurrentPickedColor().toHsl().s-getCurrentActualColor().toHsl().s)*100,
-        luma_delta: (getCurrentPickedColor().toHsl().l-getCurrentActualColor().toHsl().l)*100,
+        euclid_dist: colors.getRGBEuclidDist(),
+        hue_dist: colors.getHueDist(),
+        saturation_dist: colors.getSatDist(),
+        luma_dist: colors.getLumaDist(),
+        hue_delta: colors.getHueDelta(),
+        saturation_delta: colors.getSatDelta(),
+        luma_delta: colors.getLumaDelta(),
         time: actualTime
     }).done(saveImage());
 }
@@ -58,6 +82,7 @@ function saveImage(){
         img_base64: canvas.toDataURL("image/png")
     });
 }
+*/
 
 function initColorPicker(){
     /* Init color picker */
@@ -83,16 +108,28 @@ function initColorPicker(){
         }
     });
 }
-
-var actualTime = 0;
+/*
+export var actualTime = 0;
 var lastTimeStamp = Date.now();
+*/
+export function next(){
+    selectedColor++;
+    if(selectedColor>=inputColors.length){
+        return false;
+    }
+    /*lastTimeStamp = Date.now();
+    actualTime = 0;*/
+    displayChart(randomSequence[selectedColor]);
+    return true;
+}
 
 /* Action when next button is pressed */
+/*
 $("#next").click(function(){
     $("#test-container").hide();
     $("#wait-message").show();
     waitMsgAnimate();
-    addData().done(function(){
+    DataSaver.addData().done(function(){
         selectedColor++;
         if(selectedColor>=inputColors.length){
             window.removeEventListener('beforeunload',alertOnLeaving);
@@ -112,8 +149,8 @@ $("#next").click(function(){
         $("#connection-error-message").show();
     });
 });
+*/
 
-$rewriteChartCallback = $.Callbacks();
 function displayChart(index){
     canvasDrawer.init(inputColors[index]);
     showColorsSlider(inputColors[index].color);
@@ -132,8 +169,8 @@ function setText(text){
 
 /* Reset the current chart (also used for initializing the first one) */
 function reset(){
-    lastTimeStamp = Date.now();
-    actualTime = 0;
+    /*lastTimeStamp = Date.now();
+    actualTime = 0;*/
     displayChart(randomSequence[selectedColor]);
 }
 
@@ -155,30 +192,17 @@ function download(filename) {
     }
 }
 
-function getCurrentActualColor(){
+export function getCurrentActualColor(){
     return tinycolor(inputColors[randomSequence[selectedColor]].first_foreground);
 }
-function getCurrentPickedColor(){
+export function getCurrentPickedColor(){
     return tinycolor(inputColors[randomSequence[selectedColor]].picked_color);
 }
-function getCurrentBgColor(){
+export function getCurrentBgColor(){
     return tinycolor(inputColors[randomSequence[selectedColor]].background_color);
 }
-function getChartID(){
+export function getChartID(){
     return inputColors[randomSequence[selectedColor]].chart_id;
-}
-
-function get3DEuclidDist(color1, color2){
-    color1 = color1.toRgb();
-    color2 = color2.toRgb();
-    return Math.sqrt(Math.pow((color1.r-color2.r),2)+Math.pow((color1.g-color2.g),2)+Math.pow((color1.b-color2.b),2));
-}
-function get2DEuclidDist(val1, val2){
-    return Math.sqrt(Math.pow((val1-val2),2));
-}
-function getHueDist(color1, color2){
-    var raw_dist = get2DEuclidDist(color1.toHsl().h, color2.toHsl().h);
-    return Math.min(raw_dist, 360-raw_dist);
 }
 
 function showColorsSlider(condition){
@@ -198,3 +222,17 @@ $(document).ready(function(){
         reset();
     })
 });
+
+export function addRewriteChartCallback(callback){
+    $rewriteChartCallback.add(callback);
+}
+export function addNextChartCallback(callback){
+    $nextChartCallback.add(callback);
+}
+/*
+export function startTimer(){
+    lastTimeStamp = Date.now();
+}
+export function pauseTimer(){
+    actualTime += (Date.now()-lastTimeStamp);
+}*/

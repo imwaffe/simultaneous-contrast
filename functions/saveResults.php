@@ -38,8 +38,15 @@
 	    file_put_contents($file, $data);
 	}
 
-	else if($_GET["action"]=="email"){
-		file_put_contents($testRoot.$testUsersDetails, $_POST["email_address"]);
+	else if($_GET["action"]=="userdetails"){
+		if(isset($_POST["user_email_address"]))
+			file_put_contents($testRoot.$testUsersDetails, "email_address: ".$_POST["user_email_address"].PHP_EOL, FILE_APPEND | LOCK_EX);
+		if(isset($_POST["user_nickname"]))
+			file_put_contents($testRoot.$testUsersDetails, "nickname: ".$_POST["user_nickname"].PHP_EOL, FILE_APPEND | LOCK_EX);
+		if(isset($_POST["user_gender"]))
+			file_put_contents($testRoot.$testUsersDetails, "gender: ".$_POST["user_gender"].PHP_EOL, FILE_APPEND | LOCK_EX);
+		if(isset($_POST["user_works_with_colors"]))
+			file_put_contents($testRoot.$testUsersDetails, "works_with_colors: ".$_POST["user_works_with_colors"].PHP_EOL, FILE_APPEND | LOCK_EX);
 	}
 
 	else{

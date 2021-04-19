@@ -3,6 +3,7 @@
 .hgignore
 nbproject
 index_demo_site.html
+*.log
 /data/test-results/**/
 !/data/test-results/.gitkeep
 !/data/test-results/DEMO_**/

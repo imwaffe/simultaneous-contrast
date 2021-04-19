@@ -1,10 +1,10 @@
 <?php 
     session_start();
-    require_once("./components/DotEnv.php");
-    (new DotEnv('./.env'))->load();
+    require_once($_SERVER['DOCUMENT_ROOT']."/components/DotEnv.php");
+    (new DotEnv($_SERVER['DOCUMENT_ROOT']."/.env"))->load();
 ?>
 
-<?php include "./components/header.php"; ?>
+<?php include $_SERVER['DOCUMENT_ROOT']."/components/header.php"; ?>
 <style>
     .canvas-test{
         margin-top: 0px !important;
@@ -41,8 +41,6 @@
     var innerSize = <?php echo getenv('TEST_INNERSQUARE_SIZE'); ?>;
     var outerSize = <?php echo getenv('TEST_OUTERSQUARE_SIZE'); ?>;
 </script>
-<script src="jquery-colorpickersliders/jquery.colorpickersliders.js"></script>
-<script src="script/runTest.js"></script>
-<script src="script/colorsTest.js"></script>
+<script src="/script/colorsTest.js"></script>
 
-</html>
+<?php include $_SERVER['DOCUMENT_ROOT']."components/footer.php"; ?>
