@@ -52,6 +52,8 @@
 		    		<p>
 						CC BY-NC Luca Armellin - github: <a href="https://github.com/imwaffe/" target="_blank">@imwaffe</a><br>
 						<a href="http://www.virtuosoft.eu/code/jquery-colorpickersliders/" target="_blank">jQuery Color Picker Sliders</a>, Apache License Version 2.0 by <a href="https://github.com/istvan-ujjmeszaros" target="_blank">István Ujj-Mészáros</a>
+						<br>            
+                        <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a>, released under <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">MIT License</a>
 			        </p>
 		    	</div>
 		    </div>

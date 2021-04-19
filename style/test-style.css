@@ -1,0 +1,10 @@
+.progress.test-progress-bar {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 0.5rem;
+    background: #3f3f3f;
+}
+.test-progress-bar .progress-bar.progress-bar-striped {
+    background: #ffffff;
+}

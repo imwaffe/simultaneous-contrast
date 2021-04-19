@@ -39,6 +39,9 @@
 	}
 
 	else if($_GET["action"]=="userdetails"){
+		if(!file_exists($testRoot)){
+			mkdir($testRoot,0777);
+		}
 		if(isset($_POST["user_email_address"]))
 			file_put_contents($testRoot.$testUsersDetails, "email_address: ".$_POST["user_email_address"].PHP_EOL, FILE_APPEND | LOCK_EX);
 		if(isset($_POST["user_nickname"]))

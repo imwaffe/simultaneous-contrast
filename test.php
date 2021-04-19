@@ -12,9 +12,14 @@
 
 <?php include $_SERVER['DOCUMENT_ROOT']."components/header.php"; ?>
 
+<link href="/style/test-style.css" rel="stylesheet" type="text/css" media="all">
+
 <body>
     <div class="vertical-center">
     <div class="container" id="test-container">
+        <div class="progress test-progress-bar">
+            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
         <div class="row" style="margin-top:10px">
             <div class="col-md-12">
                 <div align="center">
@@ -75,6 +80,9 @@
     </div>
 </div>
 </div>
+
+<!-- User details modal -->
+<?php include $_SERVER['DOCUMENT_ROOT']."components/userdetails.php"; ?>
 
 <!-- Confirmation modal -->
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModal" aria-hidden="true">

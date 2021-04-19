@@ -25,18 +25,28 @@ export class Rectangles{
         this.setSecondBGColor();
         this.onBackgroundLoadCallback.add((function(){
             this.setSecondFGColor(colors.second_foreground);
+            this.setFirstFGColor(colors.first_foreground);
         }).bind(this));
-        this.setFirstFGColor(colors.first_foreground);
 
         //var nearlyRandomColor = RandomColor.nearlyRandomColor(tinycolor(colors.second_foreground));
         //this.setSecondFGColor(nearlyRandomColor.toHexString());
+        this.setFirstFGColor(colors.first_foreground);
         this.setSecondFGColor(colors.second_foreground);
     }
 
 
     setFirstBGColor(color){
-        this.c.fillStyle = color;
-        this.c.fillRect(this.leftOuterMargin, this.topOuterMargin, this.outerSize, this.outerSize);
+        if(color != "wn"){
+            this.c.fillStyle = color;
+            this.c.fillRect(this.leftOuterMargin, this.topOuterMargin, this.outerSize, this.outerSize);
+        } else {
+            this.onBackgroundLoadCallback.add((function(){
+                this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin, this.topOuterMargin, this.outerSize, this.outerSize);
+            }).bind(this));
+            if(this.whiteNoiseImg!=null){
+                this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin, this.topOuterMargin, this.outerSize, this.outerSize);
+            }
+        }
     }
 
     setSecondBGColor(){

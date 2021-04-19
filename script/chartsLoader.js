@@ -20,15 +20,18 @@ var $rewriteChartCallback = $.Callbacks();
 var $nextChartCallback = $.Callbacks();
 
 /* Generate a random sequence, so that everytime the page is loaded the charts are displayed in different order */
-var selectedColor = 0;  //Index used with randomSequence array to get the actual chart number
+export var selectedColor = 0;  //Index used with randomSequence array to get the actual chart number
 var randomSequence = [];    //Used as a map to get a pseudorandom index for inputColors objects array
 var inputColors;    //Contains the colors 
+
+export var totalCharts = 0;
 
 var $chartLoadedCallbacks = $.Callbacks();
 $.get( ((typeof csvFile==='undefined')?"colors.csv":csvFile), function(CSVdata) {
       inputColors = $.csv.toObjects(CSVdata);
 }).done(function(){
     var usedNumbers = [];
+    totalCharts = inputColors.length;
     for(var i=0; i<inputColors.length; i++)
         usedNumbers[i] = false;
     var index = 0;
@@ -99,24 +102,6 @@ function reset(){
     displayChart(randomSequence[selectedColor]);
 }
 
-/* Function to download canvas as PNG image */
-function download(filename) {
-    var link = document.createElement('a');
-    var canvas = document.getElementById(CANVAS_ID);
-    link.download = filename;
-    link.href = canvas.toDataURL("image/png");
-    if (document.createEvent) {
-        e = document.createEvent("MouseEvents");
-        e.initMouseEvent("click", true, true, window,
-                         0, 0, 0, 0, 0, false, false, false,
-                         false, 0, null);
-
-        link.dispatchEvent(e);
-    } else if (link.fireEvent) {
-        link.fireEvent("onclick");
-    }
-}
-
 export function getCurrentActualColor(){
     return tinycolor(inputColors[randomSequence[selectedColor]].first_foreground);
 }
@@ -148,6 +133,9 @@ $(document).ready(function(){
     })
 });
 
+export function addChartLoadedCallback(callback){
+    $chartLoadedCallbacks.add(callback);
+}
 export function addRewriteChartCallback(callback){
     $rewriteChartCallback.add(callback);
 }
