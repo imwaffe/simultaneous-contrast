@@ -7,3 +7,4 @@ index_demo_site.html
 /data/test-results/**/
 !/data/test-results/.gitkeep
 !/data/test-results/DEMO_**/
+utils/

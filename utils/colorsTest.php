@@ -1,10 +1,10 @@
 <?php 
     session_start();
-    require_once("components/DotEnv.php");
-    (new DotEnv(".env"))->load();
+    require_once("../components/DotEnv.php");
+    (new DotEnv("../.env"))->load();
 ?>
 
-<?php include $_SERVER['DOCUMENT_ROOT']."/components/header.php"; ?>
+<?php include "../components/header.php"; ?>
 <style>
     .canvas-test{
         margin-top: 0px !important;
@@ -43,4 +43,4 @@
 </script>
 <script src="/script/colorsTest.js"></script>
 
-<?php include "components/footer.php"; ?>
+<?php include "../components/footer.php"; ?>
