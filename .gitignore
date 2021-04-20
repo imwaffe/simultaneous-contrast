@@ -4,7 +4,7 @@
 nbproject
 index_demo_site.html
 *.log
-/utils/
+utils
 /data/test-results/**/
 !/data/test-results/.gitkeep
 !/data/test-results/DEMO_**/
