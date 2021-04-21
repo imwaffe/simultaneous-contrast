@@ -149,6 +149,7 @@
 
     <script type="module">
         import {addRewriteChartCallback, canvasDrawer} from "/script/chartsLoader.js";
+        canvasDrawer.rewriteSecondBg = false;
 
         function drawExampleCircles(){
             canvasDrawer.c.lineWidth="5";

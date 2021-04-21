@@ -2,6 +2,8 @@ export class Rectangles{
     whiteNoiseImg = null;
     onBackgroundLoadCallback = $.Callbacks();
 
+    rewriteSecondBg = true;
+
     constructor(outerSize, innerSize, gap, canvas, colorPicker){
         this.c = canvas.getContext("2d");
         this.colorPicker = colorPicker;
@@ -83,6 +85,8 @@ export class Rectangles{
     }
 
     setSecondFGColor(color){
+        if(this.rewriteSecondBg)
+            this.setSecondBGColor();
         this.c.fillStyle = color;
         this.c.fillRect(this.leftInnerMargin+this.outerSize+this.gap, this.topInnerMargin, this.innerSize, this.innerSize);
     }
