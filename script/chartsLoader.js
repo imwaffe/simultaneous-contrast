@@ -1,7 +1,7 @@
 import * as jQuery from "/libraries/jquery-1.9.0.min.js";
 import * as jQueryCsv from "/libraries/jquery.csv.min.js";
 import * as ColorPicker from "/libraries/jquery-colorpickersliders/jquery.colorpickersliders.js";
-import {Rectangles} from "/script/canvasDrawer.js";
+import Rectangles from "/script/canvasDrawer.js";
 
 export var canvasDrawer = new Rectangles(outerSize, innerSize, gap, document.getElementById("canvas"), $("#hsl"));
 
@@ -20,11 +20,14 @@ var $rewriteChartCallback = $.Callbacks();
 var $nextChartCallback = $.Callbacks();
 
 /* Generate a random sequence, so that everytime the page is loaded the charts are displayed in different order */
-export var selectedColor = 0;  //Index used with randomSequence array to get the actual chart number
+var selectedColor = 0;  //Index used with randomSequence array to get the actual chart number
+var totalCharts = 0;
 var randomSequence = [];    //Used as a map to get a pseudorandom index for inputColors objects array
 var inputColors;    //Contains the colors 
 
-export var totalCharts = 0;
+export function getCompletion(){
+    return (selectedColor/totalCharts);
+}
 
 var $chartLoadedCallbacks = $.Callbacks();
 $.get( ((typeof csvFile==='undefined')?"colors.csv":csvFile), function(CSVdata) {

@@ -1,21 +1,15 @@
 import * as jQuery from "/libraries/jquery-1.9.0.min.js";
 import * as Bootstrap from "/libraries/bootstrap/js/bootstrap.min.js";
-import {next, selectedColor, totalCharts, addChartLoadedCallback} from "/script/chartsLoader.js";
+import {next, getCompletion, addChartLoadedCallback} from "/script/chartsLoader.js";
 import DataSaver from "/script/runTest/dataSaver.js";
-import {userDetailsSaved, addSavedDetailsCallback} from "/script/runTest/saveUserDetails.js";
+import SaveUserDetails from "/script/runTest/saveUserDetails.js";
 
-export var actualTime = 0;
+var actualTime = 0;
 var lastTimeStamp = Date.now();
 
-addSavedDetailsCallback(function(){
-    $("#fullScreenModal").modal("show");
-});
-
-addChartLoadedCallback(function(){
-    $(".progress.test-progress-bar .progress-bar").width(((selectedColor/totalCharts)*100)+"%");
-})
-
 $(document).ready(function(){
+    var $saveUserDetails = new SaveUserDetails();
+
     $(".modal").on("hide.bs.modal", function(){
         startTimer();
     })
@@ -30,10 +24,6 @@ $(document).ready(function(){
         exitFullScreenHandler();
     });
 
-    $("#next").click(function(){
-        exitFullScreenHandler();
-    });
-
     if (document.addEventListener){
         document.addEventListener('fullscreenchange', exitFullScreenHandler, false);
         document.addEventListener('mozfullscreenchange', exitFullScreenHandler, false);
@@ -44,6 +34,7 @@ $(document).ready(function(){
     window.addEventListener('beforeunload', alertOnLeaving);
 
     $("#next").click(function(){
+        exitFullScreenHandler();
         $("#test-container").hide();
         $("#wait-message").show();
         waitMsgAnimate();
@@ -51,12 +42,13 @@ $(document).ready(function(){
             if(!next()){
                 window.removeEventListener('beforeunload',alertOnLeaving);
                 window.location.replace("thankyou.php");
+            } else {
+                waitMsgAnimateStop();
+                $("#wait-message").hide();
+                $("#test-container").show();
+                resetTimer();
+                $(".progress.test-progress-bar .progress-bar").width((getCompletion()*100)+"%");
             }
-            waitMsgAnimateStop();
-            $("#wait-message").hide();
-            $("#test-container").show();
-            resetTimer();
-            $(".progress.test-progress-bar .progress-bar").width(((selectedColor/totalCharts)*100)+"%");
         }).fail(function(){
             window.removeEventListener('beforeunload',alertOnLeaving);
             $("#test-container").hide();
@@ -70,8 +62,9 @@ $(document).ready(function(){
         resetTimer();
     });
 
-    if(userDetailsSaved)
+    $saveUserDetails.onsave(function(){
         $("#fullScreenModal").modal("show");
+    });
 });
 
 function exitFullScreenHandler(){
@@ -119,8 +112,4 @@ function pauseTimer(){
 function resetTimer(){
     lastTimeStamp = Date.now();
     actualTime = 0;
-}
-
-export function setProgressBar(actual, total){
-    
 }

@@ -1,4 +1,4 @@
-export class Rectangles{
+export default class Rectangles{
     whiteNoiseImg = null;
     onBackgroundLoadCallback = $.Callbacks();
 
@@ -106,6 +106,3 @@ export class Rectangles{
         return this.topInnerMargin+this.innerSize/2;
     }
 }
-
-//var canvasDrawer;
-//canvasDrawer = new Rectangles(outerSize, innerSize, gap, document.getElementById("canvas"), $("#hsl"));
