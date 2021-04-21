@@ -9,7 +9,7 @@ export default class ColorUtils{
 	}
 
 	getHSLEuclidDist(){
-	    return Math.sqrt(Math.pow(this.getHueDelta(),2)+Math.pow(this.getSatDelta(),2)+Math.pow(this.getLumaDelta(),2));
+	    return Math.sqrt(Math.pow(this.getHueDist(),2)+Math.pow(this.getSatDelta(),2)+Math.pow(this.getLumaDelta(),2));
 	}
 
 	getHueDelta(){
