@@ -35,7 +35,8 @@ $(document).ready(function(){
 
     $("#next").click(function(){
         exitFullScreenHandler();
-        $("#test-container").hide();
+        $(".main-test-container").hide();
+        $(".alert-message").show();
         $("#wait-message").show();
         waitMsgAnimate();
         DataSaver.addData(actualTime).done(function(){
@@ -45,13 +46,15 @@ $(document).ready(function(){
             } else {
                 waitMsgAnimateStop();
                 $("#wait-message").hide();
-                $("#test-container").show();
+                $(".alert-message").hide();
+                $(".main-test-container").show();
                 resetTimer();
                 $(".progress.test-progress-bar .progress-bar").width((getCompletion()*100)+"%");
             }
         }).fail(function(){
             window.removeEventListener('beforeunload',alertOnLeaving);
-            $("#test-container").hide();
+            $(".main-test-container").hide();
+            $(".alert-message").show();
             waitMsgAnimateStop();
             $("#wait-message").hide();
             $("#connection-error-message").show();

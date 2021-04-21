@@ -15,71 +15,80 @@
 <link href="/style/test-style.css" rel="stylesheet" type="text/css" media="all">
 
 <body>
-    <div class="vertical-center">
-    <div class="container" id="test-container">
-        <div class="progress test-progress-bar">
-            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="main-test-container">
+        <div class="display-contents">
+            <div class="top-row">
+                <div class="vertical-center-container">
+                    <div class="progress test-progress-bar">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row" style="margin-top:10px">
-            <div class="col-md-12">
-                <div align="center">
+
+        <div class="display-contents">
+            <div class="canvas-container">
+                <div class="vertical-center-container" align="center">
                     <canvas id="canvas" class="canvas-test" height="400px" width="1200px"></canvas>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <span id="hsl"></span>
+
+        <div class="display-contents">
+            <div class="row bottom-row">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <span id="hsl"></span>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6" align="center">
+                        <button type="button" class="btn btn-danger" id="resetButton">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> reset
+                        </button>
+                        <button type="button" class="btn btn-dark-custom" data-toggle="modal" data-target="#confirmModal">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> conferma e prosegui
+                        </button>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
             </div>
-            <div class="col-md-2"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6" align="center">
-                <button type="button" class="btn btn-danger" id="resetButton">
-                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> reset
-                </button>
-                <button type="button" class="btn btn-dark-custom" data-toggle="modal" data-target="#confirmModal">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> conferma e prosegui
-                </button>
-            </div>
-            <div class="col-md-3"></div>
         </div>
     </div>
 
-    <!-- WAIT MESSAGE -->
-    <div class="container" id="wait-message" style="display:none;">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <h1>attendi...</h1>
+    <div class="vertical-center alert-message" style="display:none">
+        <div class="container" id="wait-message" style="display:none;">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <h1>attendi...</h1>
+                </div>
+                <div class="col-md-2"></div>
             </div>
-            <div class="col-md-2"></div>
         </div>
-    </div>
 
-    <!-- CONNECTION ERROR MESSAGE -->
-    <div class="container" id="connection-error-message" style="display:none;">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <h1>C'è un problema :(</h1>
-                <p>
-                    È stata persa la connessione col server, controlla la tua connessione di rete e riprova più tardi.
-                </p>
-                <p style="text-align: right">
-                    <i>Scusaci per l'inconveniente,<br>grazie!</i>
-                </p>
-                <p style="text-align: center">
-                    <a class="btn btn-success" href="test.php"><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>  torna alla home</a>
-                </p>
+        <div class="container" id="connection-error-message" style="display:none;">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <h1>C'è un problema :(</h1>
+                    <p>
+                        È stata persa la connessione col server, controlla la tua connessione di rete e riprova più tardi.
+                    </p>
+                    <p style="text-align: right">
+                        <i>Scusaci per l'inconveniente,<br>grazie!</i>
+                    </p>
+                    <p style="text-align: center">
+                        <a class="btn btn-success" href="test.php"><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>  torna alla home</a>
+                    </p>
+                </div>
+                <div class="col-md-2"></div>
             </div>
-            <div class="col-md-2"></div>
         </div>
     </div>
-</div>
-</div>
 
 <!-- User details modal -->
 <?php include "components/userdetails.php"; ?>
