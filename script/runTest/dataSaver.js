@@ -19,7 +19,7 @@ export default class DataSaver{
             saturation_delta: colors.getSatDelta(),
             luma_delta: colors.getLumaDelta(),
             time: actualTime
-        }).done(this.saveImage());
+        });
     }
 
     static saveImage(){
