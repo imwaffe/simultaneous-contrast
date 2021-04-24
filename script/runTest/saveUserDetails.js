@@ -37,6 +37,8 @@ export default class SaveUserDetails{
 					$(this).attr("disabled","disabled");
 					$(this).text("Salvataggio in corso...");
 					$.post("functions/saveResults.php?action=userdetails",{
+						browser_useragent: navigator.userAgent,
+						browser_vendor: navigator.vendor,
 						user_nickname: $("#userDetailsForm #user_nickname").val(),
 						user_gender: $("#userDetailsForm #user_gender").val(),
 						user_works_with_colors: $("#userDetailsForm #user_color").val()
