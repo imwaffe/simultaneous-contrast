@@ -1,10 +1,8 @@
 export default class Rectangles{
-    whiteNoiseImg = null;
-    onBackgroundLoadCallback = $.Callbacks();
-
-    rewriteSecondBg = true;
-
     constructor(outerSize, innerSize, gap, canvas, colorPicker){
+        this.whiteNoiseImg = null;
+        this.onBackgroundLoadCallback = $.Callbacks();
+        this.rewriteSecondBg = true;
         this.c = canvas.getContext("2d");
         this.colorPicker = colorPicker;
 
