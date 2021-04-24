@@ -39,7 +39,7 @@ $(document).ready(function(){
         $(".alert-message").show();
         $("#wait-message").show();
         waitMsgAnimate();
-        DataSaver.addData(actualTime).done(DataSaver.saveImage()).done(function(){
+        DataSaver.addData(actualTime).then(DataSaver.saveImage).then(function(){
             if(!next()){
                 window.removeEventListener('beforeunload',alertOnLeaving);
                 window.location.replace("thankyou.php");
