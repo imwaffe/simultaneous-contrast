@@ -64,6 +64,20 @@
                   <option value="no">No</option>
                 </select>
               </div>
+              <div class="form-group row">
+                <label for="user_colorblind" class="col-form-label">
+                  Hai problemi a vedere i colori?<br>
+                  <span class="label-description">
+                    Hai o hai mai avuto problemi con la visione dei colori?
+                  </span>
+                </label>
+                <select class="form-control" id="user_colorblind" required>
+                  <option value="" selected disabled hidden>seleziona...</option>
+                  <option value="yes">Sì</option>
+                  <option value="no">No</option>
+                  <option value="unsure">Non so</option>
+                </select>
+              </div>
             </form>
           </div>
           <div class="modal-footer">

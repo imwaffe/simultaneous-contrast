@@ -6,5 +6,9 @@ index_demo_site.html
 *.log
 utils
 /data/test-results/**/
+/config_files/**/
 !/data/test-results/.gitkeep
 !/data/test-results/DEMO_**/
+!/config_files/colors.csv
+!/config_files/colors_demo.csv
+!/config_files/whitenoise.png

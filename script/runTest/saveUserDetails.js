@@ -41,7 +41,8 @@ export default class SaveUserDetails{
 						browser_vendor: navigator.vendor,
 						user_nickname: $("#userDetailsForm #user_nickname").val(),
 						user_gender: $("#userDetailsForm #user_gender").val(),
-						user_works_with_colors: $("#userDetailsForm #user_color").val()
+						user_works_with_colors: $("#userDetailsForm #user_color").val(),
+						user_is_colorblind: $("#userDetailsForm #user_colorblind").val()
 					}).done(function(){
 						$("#userDetailsModal").modal("hide");
 						$onSavedDetailsCallback.fire();
