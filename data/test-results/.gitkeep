@@ -1,0 +1,2 @@
+# test-results is the directory where each test result will be stored.
+# This file prevents the (initially) empty directory from going untracked by git.
