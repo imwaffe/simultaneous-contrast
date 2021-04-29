@@ -27,9 +27,6 @@ export default class Rectangles{
             this.setSecondFGColor(colors.second_foreground);
             this.setFirstFGColor(colors.first_foreground);
         }).bind(this));
-
-        //var nearlyRandomColor = RandomColor.nearlyRandomColor(tinycolor(colors.second_foreground));
-        //this.setSecondFGColor(nearlyRandomColor.toHexString());
         this.setFirstFGColor(colors.first_foreground);
         this.setSecondFGColor(colors.second_foreground);
     }
@@ -50,26 +47,11 @@ export default class Rectangles{
     }
 
     setSecondBGColor(){
-        /*var tmpCanvas = document.createElement('canvas');
-        tmpCanvas.setAttribute("width","150%");
-        tmpCanvas.setAttribute("height","150%");
-        var tmpCtx = tmpCanvas.getContext('2d');
-        var imageData = tmpCtx.createImageData(300,300);
-        for(var i=0; i<imageData.data.length; i+=4){
-            var dot=Math.floor(Math.random()*255);
-            imageData.data[i] = dot;
-            imageData.data[i+1] = dot;
-            imageData.data[i+2] = dot;
-            imageData.data[i+3] = 255;
-        }
-        tmpCtx.putImageData(imageData,0,0);
-        this.c.drawImage(tmpCanvas,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);*/
         if(this.whiteNoiseImg==null){
             this.whiteNoiseImg = new Image();
             this.whiteNoiseImg.src = whiteNoiseFile;
             this.whiteNoiseImg.onload = (function(){
                 this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
-                //$rewriteChartCallback.fire();
                 this.onBackgroundLoadCallback.fire();
             }).bind(this);
         }

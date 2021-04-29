@@ -5,7 +5,7 @@
     Header set Expires 0
 </IfModule>
 
-<FilesMatch "\.(css|png|env|js|ts|jpg)$">
+<FilesMatch "\.(css|png|env|js|ts|jpg|csv)$">
     <IfModule mod_expires.c>
         ExpiresActive Off
     </IfModule>
