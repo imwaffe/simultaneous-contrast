@@ -66,12 +66,14 @@ $(document).ready(function(){
     });
 
     $saveUserDetails.onsave(function(){
+        $("#fullScreenModal").modal({backdrop: 'static', keyboard: false});
         $("#fullScreenModal").modal("show");
     });
 });
 
 function exitFullScreenHandler(){
     if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement){
+        $("#fullScreenModal").modal({backdrop: 'static', keyboard: false});
         $("#fullScreenModal").modal("show");
     }
 }

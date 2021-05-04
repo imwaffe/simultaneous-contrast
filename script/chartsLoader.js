@@ -1,7 +1,7 @@
-import * as jQuery from "/libraries/jquery-1.9.0.min.js";
-import * as jQueryCsv from "/libraries/jquery.csv.min.js";
-import * as ColorPicker from "/libraries/jquery-colorpickersliders/jquery.colorpickersliders.js";
-import Rectangles from "/script/canvasDrawer.js";
+import * as jQuery from "../libraries/jquery-1.9.0.min.js";
+import * as jQueryCsv from "../libraries/jquery.csv.min.js";
+import * as ColorPicker from "../libraries/jquery-colorpickersliders/jquery.colorpickersliders.js";
+import Rectangles from "../script/canvasDrawer.js";
 
 export var canvasDrawer = new Rectangles(outerSize, innerSize, gap, document.getElementById("canvas"), $("#hsl"));
 

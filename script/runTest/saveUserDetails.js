@@ -23,11 +23,14 @@ export default class SaveUserDetails{
 			    e.preventDefault();
 			});
 			
+        	$("#userDetailsModal").modal({backdrop: 'static', keyboard: false});
 			$("#userDetailsModal").modal("show");
 
 			$("#userDetailsModal").on("hidden.bs.modal", function(){
-				if(!validForm)
+				if(!validForm){
+        			$(this).modal({backdrop: 'static', keyboard: false});
 				    $(this).modal("show");
+				}
 			});
 
 			$("#saveUserDetails").click(function(){
