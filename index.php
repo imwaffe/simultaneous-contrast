@@ -34,7 +34,7 @@
                 <div class="container description">
                     <h1>Istruzioni</h1>
                     <p>
-                        Utilizzando i selettori (<b><i>Luminosità</i></b>, <b><i>Tinta</i></b>, <b><i>Saturazione</i></b>) devi cercare di far coincidere il colore del quadrato piccolo a destra <i>(cerchiato in blu)</i> con quello del quadrato piccolo a sinistra <i>(cerchiato in rosso)</i>.<br>
+                        Utilizzando i selettori (<b><i>Tinta</i></b> e <b><i>Saturazione</i></b>) devi cercare di far coincidere il colore del quadrato piccolo a destra <i>(cerchiato in blu)</i> con quello del quadrato piccolo a sinistra <i>(cerchiato in rosso)</i>.<br>
                         Quando pensi di aver ottenuto la corrispondenza corretta, clicca sul pulsante <b><i>Conferma e prosegui</i></b> per proseguire nel test.
                     </p>
                     <p>

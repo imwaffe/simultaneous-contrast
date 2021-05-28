@@ -79,3 +79,7 @@ body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom
 #connection-error-message {
     color: #dddddd;
 }
+
+.cp-hsllightness {
+    display: none;
+}
