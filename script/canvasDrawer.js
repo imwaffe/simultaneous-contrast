@@ -1,4 +1,12 @@
 export default class Rectangles{
+    restoreColor = {};
+    timeouts = [];
+    intervals = [];
+    animateTiming = {
+        "color": 5000,
+        "white": 3000
+    }
+
     constructor(outerSize, innerSize, gap, canvas, colorPicker){
         this.whiteNoiseImg = null;
         this.onBackgroundLoadCallback = $.Callbacks();
@@ -31,8 +39,26 @@ export default class Rectangles{
         this.setSecondFGColor(colors.second_foreground);
     }
 
+    turnWhite(cond){
+        if(cond){
+            $("#whole-test-container").css("pointer-events","none");
+            this.rewriteSecondBg = false;
+            var tmpRestoreColor = {};
+            Object.assign(tmpRestoreColor, this.restoreColor);
+            this.setFirstBGColor("#ffffff");
+            this.setFirstFGColor("#ffffff");
+            this.setSecondBGrgbColor("#ffffff");
+            this.setSecondFGColor("#ffffff");
+            this.restoreColor = tmpRestoreColor;
+        } else {
+            $("#whole-test-container").css("pointer-events","all");
+            this.rewriteSecondBg = true;
+            this.init(this.restoreColor);
+        }
+    }
 
     setFirstBGColor(color){
+        this.restoreColor["background_color"] = color;
         if(color != "wn"){
             this.c.fillStyle = color;
             this.c.fillRect(this.leftOuterMargin, this.topOuterMargin, this.outerSize, this.outerSize);
@@ -44,6 +70,11 @@ export default class Rectangles{
                 this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin, this.topOuterMargin, this.outerSize, this.outerSize);
             }
         }
+    }
+
+    setSecondBGrgbColor(color){
+        this.c.fillStyle = color;
+        this.c.fillRect(this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
     }
 
     setSecondBGColor(){
@@ -60,11 +91,13 @@ export default class Rectangles{
     }
 
     setFirstFGColor(color){
+        this.restoreColor["first_foreground"] = color;
         this.c.fillStyle = color;
         this.c.fillRect(this.leftInnerMargin, this.topInnerMargin, this.innerSize, this.innerSize);
     }
 
     setSecondFGColor(color){
+        this.restoreColor["second_foreground"] = color;
         if(this.rewriteSecondBg)
             this.setSecondBGColor();
         this.c.fillStyle = color;
@@ -84,5 +117,36 @@ export default class Rectangles{
     }
     getTopMarginFG(){
         return this.topInnerMargin+this.innerSize/2;
+    }
+
+    turnWhiteAnimate() {
+        this.timeouts.push(window.setTimeout(function(){
+            this.turnWhite(true);
+        }.bind(this),this.animateTiming["color"]));
+
+        this.intervals.push(window.setInterval(function(){
+            this.turnWhite(false);
+        }.bind(this),this.animateTiming["color"]+this.animateTiming["white"]));
+
+        this.timeouts.push(window.setTimeout(function(){
+            this.intervals.push(window.setInterval(function(){
+                this.turnWhite(true);
+            }.bind(this),this.animateTiming["color"]+this.animateTiming["white"]));
+        }.bind(this),this.animateTiming["color"]));
+    }
+    animateStart(color, white){
+        this.animateTiming["color"] = color;
+        this.animateTiming["white"] = white;
+        this.turnWhiteAnimate();
+    }
+    animateStop(){
+        for(var key in this.timeouts){
+            window.clearTimeout(this.timeouts[key]);
+        }
+        for(var key in this.intervals){
+            window.clearInterval(this.intervals[key]);
+        }
+        $("#whole-test-container").css("pointer-events","all");
+        this.init(this.restoreColor);
     }
 }

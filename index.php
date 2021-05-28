@@ -44,7 +44,8 @@
                         <b>Quando ti senti pronto puoi iniziare il test vero e proprio premendo il pulsante qui sotto:</b>
                     </p>
                     <div align="center">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#startTestModal">inizia il test <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></button>
+
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#startTestModal">inizia il test <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></button>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -81,7 +82,7 @@
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6" align="center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> conferma e prosegui
                             </button>
                         </div>
@@ -96,30 +97,26 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="confirmModal">ATTENZIONE!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                     Questa è solo una prova, per iniziare il test vero e proprio premi sul pulsante <b><i>Inizia il test</i></b>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">Indietro</button>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#startTestModal">inizia il test <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Indietro</button>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#startTestModal" data-bs-dismiss="modal">inizia il test <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></button>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- Start test modal -->
-            <div class="modal fade" id="startTestModal" tabindex="-1" role="dialog" aria-labelledby="startTestModal" aria-hidden="true">
-              <div class="modal-dialog dark-modal" role="document">
+            <div class="modal fade" id="startTestModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="startTestModalLabel" aria-hidden="true">
+              <div class="modal-dialog dark-modal">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="startTestModal">ATTENZIONE!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title" id="startTestModalLabel">ATTENZIONE!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                     <p>
@@ -131,8 +128,18 @@
                     </p>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">Indietro</button>
-                    <a class="btn btn-success" href="test.php">inizia il test <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></a>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Indietro</button>
+                    <div class="dropdown show">
+                      <button class="btn btn-success dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        inizia il test <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+                      </button>
+
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="test.php">Test semplice</a>
+                        <a class="dropdown-item" href="test.php?cone_reset_delay=5000&cone_reset_time=3000">Reset coni 5s/3s</a>
+                        <a class="dropdown-item" href="test.php?cone_reset_delay=15000&cone_reset_time=5000">Reset coni 15s/5s</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

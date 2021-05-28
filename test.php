@@ -12,6 +12,17 @@
 
 <?php include "components/header.php"; ?>
 
+<script type="text/javascript">
+    var coneResetTime = 3000;
+    var coneResetDelay = 5000;
+    var coneReset = false
+    <?php if( isset($_GET["cone_reset_time"]) && isset($_GET["cone_reset_delay"]) ): ?>
+        coneResetTime = <?php echo $_GET['cone_reset_time']; ?>;
+        coneResetDelay = <?php echo $_GET['cone_reset_delay']; ?>;
+        coneReset = true;
+    <?php endif; ?>
+</script>
+
 <link href="/style/test-style.css" rel="stylesheet" type="text/css" media="all">
 
 <body>
@@ -34,7 +45,7 @@
             </div>
         </div>
 
-        <div class="display-contents">
+        <div class="display-contents" id="whole-test-container">
             <div class="row bottom-row">
                 <div class="row">
                     <div class="col-md-2"></div>
@@ -49,7 +60,7 @@
                         <button type="button" class="btn btn-danger" id="resetButton">
                             <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> reset
                         </button>
-                        <button type="button" class="btn btn-dark-custom" data-toggle="modal" data-target="#confirmModal">
+                        <button type="button" class="btn btn-dark-custom" data-bs-toggle="modal" data-bs-target="#confirmModal">
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> conferma e prosegui
                         </button>
                     </div>
@@ -99,16 +110,13 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="confirmModal">ATTENZIONE!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
           <div class="modal-body">
             Sei sicuro di voler confermare il colore scelto?
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Indietro</button>
-            <button id="next" type="button" class="btn btn-primary" data-dismiss="modal">Conferma</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Indietro</button>
+            <button id="next" type="button" class="btn btn-primary" data-bs-dismiss="modal">Conferma</button>
           </div>
         </div>
     </div>
@@ -120,9 +128,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="fullScreenModal">ATTENZIONE!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
           <div class="modal-body">
             <p>
@@ -134,7 +139,7 @@
           </div>
           <div class="modal-footer">
             <a class="btn btn-danger" href="index.php">Annulla il test</a>
-            <button id="goFullScreen" type="button" class="btn btn-primary" data-dismiss="modal">Accetta</button>
+            <button id="goFullScreen" type="button" class="btn btn-primary" data-bs-dismiss="modal">Accetta</button>
           </div>
         </div>
     </div>

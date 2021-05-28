@@ -16,7 +16,7 @@
         <link href="/style/style.css" rel="stylesheet" type="text/css" media="all">
 
         <script src="/libraries/jquery-1.9.0.min.js"></script>
-        <script src="/libraries/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="/libraries/prettify/prettify.js"></script>
         <script src="/libraries/tinycolor.js"></script>
         <script src="/libraries/jquery.csv.min.js"></script>
