@@ -22,66 +22,66 @@
     <div class="modal-dialog dark-modal" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title" id="userDetailsModal">Dicci qualcosa su di te</h3>
+            <h3 class="modal-title" id="userDetailsModal"><?php t("user_details", "tell_something_about_you") ?></h3>
           </div>
           <div class="modal-body">
-            Prima di iniziare il test ci servono delle informazioni su di te:
+            <?php t("user_details", "before_start_need_information") ?>
             <form id="userDetailsForm">
               <div class="form-group row">
                 <label for="user_nickname" class="col-form-label">
-                  Pseudonimo:<br>
+                  <?php t("global", "nickname") ?>:<br>
                   <span class="label-description">
-                    Scrivi un soprannome che ci aiuterà a distinguere i vari test mantenendo l'anonimato
+                    <?php t("user_details", "ask_nickname") ?>
                   </span>
                 </label>
-                  <input type="text" class="form-control" id="user_nickname" placeholder="es: juliet-reds" required>
+                  <input type="text" class="form-control" id="user_nickname" placeholder="eg: juliet-reds" required>
               </div>
               <div class="form-group row">
                 <label for="user_gender" class="col-form-label">
-                  Sesso:<br>
+                  <?php t("global", "gender") ?>:<br>
                   <span class="label-description">
-                    Indica il sesso che ti è stato <b>assegnato alla nascita</b>
+                    <?php t("user_details", "select_gender") ?>
                   </span>
                 </label>
                 <select class="form-control" id="user_gender" required>
-                  <option value="" selected disabled hidden>seleziona...</option>
-                  <option value="female">Femminile</option>
-                  <option value="male">Maschile</option>
-                  <option value="intersex">Intersessuale</option>
+                  <option value="" selected disabled hidden><?php t("global", "select_dropdown") ?></option>
+                  <option value="female"><?php t("global", "female") ?></option>
+                  <option value="male"><?php t("global", "male") ?></option>
+                  <option value="intersex"><?php t("global", "intersex") ?></option>
                 </select>
               </div>
               <div class="form-group row">
                 <label for="user_color" class="col-form-label">
-                  Lavori con il colore?<br>
+                  <?php t("user_details", "q_work_with_color") ?><br>
                   <span class="label-description">
-                    Per lavoro o per passione hai a che fare quotidianamente con il colore?<br>
-                    Ad esempio: fotografo, grafico, pittore...
+                    <?php t("user_details", "q_work_with_color_explain") ?><br>
+                    <?php t("user_details", "q_work_with_color_examples") ?>
                   </span>
                 </label>
                 <select class="form-control" id="user_color" required>
-                  <option value="" selected disabled hidden>seleziona...</option>
-                  <option value="yes">Sì</option>
-                  <option value="no">No</option>
+                  <option value="" selected disabled hidden><?php t("global", "select_dropdown") ?></option>
+                  <option value="yes"><?php t("global", "yes") ?></option>
+                  <option value="no"><?php t("global", "no") ?></option>
                 </select>
               </div>
               <div class="form-group row">
                 <label for="user_colorblind" class="col-form-label">
-                  Hai problemi a vedere i colori?<br>
+                  <?php t("user_details", "q_problem_with_color") ?><br>
                   <span class="label-description">
-                    Hai o hai mai avuto problemi con la visione dei colori?
+                    <?php t("user_details", "q_problem_with_color_explain") ?>
                   </span>
                 </label>
                 <select class="form-control" id="user_colorblind" required>
-                  <option value="" selected disabled hidden>seleziona...</option>
-                  <option value="yes">Sì</option>
-                  <option value="no">No</option>
-                  <option value="unsure">Non so</option>
+                  <option value="" selected disabled hidden><?php t("global", "select_dropdown") ?></option>
+                  <option value="yes"><?php t("global", "yes") ?></option>
+                  <option value="no"><?php t("global", "no") ?></option>
+                  <option value="unsure"><?php t("global", "unsure") ?></option>
                 </select>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button id="saveUserDetails" type="button" class="btn btn-primary">Salva e prosegui</button>
+            <button id="saveUserDetails" type="button" class="btn btn-primary"><?php t("global", "submit_and_continue") ?></button>
           </div>
         </div>
     </div>

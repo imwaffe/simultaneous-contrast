@@ -6,7 +6,7 @@
     require_once "libraries/Mobile_Detect.php";
     $detect = new Mobile_Detect;
     if($detect->isMobile())
-        header('Location: /onlymobile.php');
+        header('Location: ./onlymobile.php');
     else
         $_SESSION['visited_index'] = true;
 ?>
@@ -24,7 +24,7 @@
 </script>
 <script>
     if(!supported)
-        window.location.replace("/notsupported.php");
+        window.location.replace("./notsupported.php");
 </script>
 
     <body>
@@ -32,20 +32,20 @@
             <div class="col-md-1"></div>
             <div class="col-md-4">
                 <div class="container description">
-                    <h1>Istruzioni</h1>
+                    <h1><?php t("global","instructions"); ?></h1>
                     <p>
-                        Utilizzando i selettori (<b><i>Tinta</i></b>, <b><i>Saturazione</i></b> e <b><i>Luminosità</i></b>) devi cercare di far coincidere il colore del quadrato piccolo a destra <i>(cerchiato in blu)</i> con quello del quadrato piccolo a sinistra <i>(cerchiato in rosso)</i>.<br>
-                        Quando pensi di aver ottenuto la corrispondenza corretta, clicca sul pulsante <b><i>Conferma e prosegui</i></b> per proseguire nel test.
+                        <?php t("instructions","using_sliders") ?> (<b><i><?php t("global","hue") ?></i></b>, <b><i><?php t("global","saturation") ?></i></b>, <b><i><?php t("global","brightness") ?></i></b>) <?php t("instructions","match_squares") ?><br>
+                        <?php t("instructions", "when_matched") ?> <b><i><?php t("global", "submit_and_continue") ?></i></b> <?php t("instructions", "to_continue") ?>.
                     </p>
                     <p>
-                        Puoi provare il funzionamento del test in questa schermata, sfruttando quello che vedi a lato.
+                        <?php t("instructions", "try_demo") ?>
                     </p>
                     <p>
-                        <b>Quando ti senti pronto puoi iniziare il test vero e proprio premendo il pulsante qui sotto:</b>
+                        <b><?php t("instructions", "when_ready") ?></b>
                     </p>
                     <div align="center">
 
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#startTestModal">inizia il test <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#startTestModal"><?php t("global", "begin_test") ?> <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></button>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -83,7 +83,7 @@
                         <div class="col-md-3"></div>
                         <div class="col-md-6" align="center">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> conferma e prosegui
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?php t("global", "submit_and_continue") ?>
                             </button>
                         </div>
                         <div class="col-md-3"></div>
@@ -96,15 +96,15 @@
               <div class="modal-dialog dark-modal" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="confirmModal">ATTENZIONE!</h5>
+                    <h5 class="modal-title" id="confirmModal"><?php t("global", "warning") ?>!</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    Questa è solo una prova, per iniziare il test vero e proprio premi sul pulsante <b><i>Inizia il test</i></b>
+                    <?php t("modals", "just_demo_to_start_click_on") ?> <b><i><?php t("global", "begin_test") ?></i></b>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Indietro</button>
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#startTestModal" data-bs-dismiss="modal">inizia il test <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal"><?php t("global", "go_back") ?></button>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#startTestModal" data-bs-dismiss="modal"><?php t("global", "begin_test") ?> <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></button>
                   </div>
                 </div>
               </div>
@@ -115,30 +115,32 @@
               <div class="modal-dialog dark-modal">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="startTestModalLabel">ATTENZIONE!</h5>
+                    <h5 class="modal-title" id="startTestModalLabel"><?php t("global", "warning") ?>!</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                     <p>
-                        Premendo su <b><i>Inizia il test</i></b> inizierai effettivamente il test.<br>
-                        Il test richiede meno di dieci minuti e non può essere interrotto.
+                        <?php t("global", "clicking_on") ?> <b><i><?php t("global", "begin_test") ?></i></b> <?php t("instructions", "start_test") ?>.<br>
+                        <?php t("modals", "requires_10_minutes_cant_interrupt") ?>
                     </p>
                     <p>
-                        <b>Sei sicuro di voler iniziare?</b>
+                        <b><?php t("modals", "q_sure_to_start") ?></b>
                     </p>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Indietro</button>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal"><?php t("global", "go_back") ?></button>
+                    <a class="btn btn-success" href="test.php?cone_reset_delay=5000&cone_reset_time=3000"><?php t("global", "begin_test") ?></a>
+                    <!--
                     <div class="dropdown show">
                       <button class="btn btn-success dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         inizia il test <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
                       </button>
-
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="test.php">Test semplice</a>
                         <a class="dropdown-item" href="test.php?cone_reset_delay=5000&cone_reset_time=3000">Reset coni 5s/3s</a>
                         <a class="dropdown-item" href="test.php?cone_reset_delay=15000&cone_reset_time=5000">Reset coni 15s/5s</a>
                       </div>
+                    -->
                     </div>
                   </div>
                 </div>
@@ -155,7 +157,7 @@
     </script>
 
     <script type="module">
-        import {addRewriteChartCallback, canvasDrawer} from "/script/chartsLoader.js";
+        import {addRewriteChartCallback, canvasDrawer} from "./script/chartsLoader.js";
         canvasDrawer.rewriteSecondBg = false;
 
         function drawExampleCircles(){

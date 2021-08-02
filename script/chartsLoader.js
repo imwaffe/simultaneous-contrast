@@ -61,12 +61,9 @@ function initColorPicker(){
             hsl: 1
         },
         labels: {
-            hslhue: "Tinta",
-            hslsaturation: "Saturazione",
-            hsllightness: "Luminosità",
-            rgbred: "Rosso",
-            rgbgreen: "Verde",
-            rgbblue: "Blu"
+            hslhue: "",
+            hslsaturation: "",
+            hsllightness: "",
         },
         onchange: function(container, color){
             canvasDrawer.setSecondFGColor(color.tiny.toHexString());
@@ -87,7 +84,7 @@ export function next(){
 function displayChart(index){
     canvasDrawer.init(inputColors[index]);
     showColorsSlider(inputColors[index].color);
-    setText("Tavola "+inputColors[index].chart_id);
+    setText("chart "+inputColors[index].chart_id);
     $rewriteChartCallback.fire();
 }
 

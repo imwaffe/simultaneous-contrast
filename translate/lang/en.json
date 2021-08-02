@@ -1,0 +1,94 @@
+{
+	"instructions": {
+		"using_sliders": "Using the sliders",
+		"match_squares": "you have to try matching the color of the tiny inner square on the right (circled in blue) with the color of the inner square on the left (circled in red).<br>Every 5 seconds the two squares will become solid white for 3 seconds, during that time you won't be able to interact with the test.",
+		"when_matched": "When you feel you correctly matched the two squares, please click on",
+		"to_continue": "to continue with the test",
+		"try_demo": "You can try out how it works in this page, using the demo on the right.",
+		"when_ready": "When you think you're ready, you can start the actual test by clicking on the button below:",
+		"start_test": "you'll start the actual test"
+	},
+
+	"modals": {
+		"requires_10_minutes_cant_interrupt": "The test requires around 10 minutes and cannot be interrupted.",
+		"just_demo_to_start_click_on": "This is just a demo, to start the actual test please click on",
+		"q_sure_to_start": "Are you sure you want to start?",
+		"test_must_run_fullscreen": "The test must run in full screen mode",
+		"to_go_fullscreen": "to run the test in full screen mode",
+		"q_confirm_color_submit": "Are you sure you want to submit the chosen color?",
+		"alert_cone_reset_description": "Every 5 seconds, both squares will turn white for 3 seconds, during this period you won't be able to interact with the interface.<br>This prevents the visual system to compensate prolonged and constant stimuli."
+	},
+
+	"user_details": {
+		"tell_something_about_you": "Tell us something about you",
+		"before_start_need_information": "Before starting the test, we need some information about you:",
+
+		"q_work_with_color": "Do you work with colors?",
+		"q_problem_with_color": "Do you have problems with color vision?",
+		"q_problem_with_color_explain": "Do you have or have you ever had any problem regarding colors and their discrimination?",
+
+		"ask_nickname": "Please choose a nickname that will help us distinguish between each run while preserving anonimity",
+		"select_gender": "Select the gender you've been assigned at birth",
+		"q_work_with_color_explain": "Are you used working with colors on a daily basis, both for work or hobby?",
+		"q_work_with_color_examples": "eg: photographer, graphic designer, painter, ..."
+	},
+
+	"errors": {
+		"connection_lost": "The connection with our server was lost. Please check your network and try again later.",
+		"sorry_for_inconvenience": "Sorry for the inconvenience"
+	},
+
+	"global": {
+		"instructions": "Instructions",
+		"hue": "Hue",
+		"saturation": "Saturation",
+		"brightness": "Lightness",
+		"submit_and_continue": "submit and continue",
+		"begin_test": "start the test",
+		"warning": "WARNING",
+		"clicking_on": "By clicking on",
+		"click_on": "Click on",
+		"click": "Click",
+		"here": "here",
+		"go_back": "go back",
+		"for_example": "For example",
+		"male": "Male",
+		"female": "Female",
+		"intersex": "Intersexual",
+		"yes": "Yes",
+		"no": "No",
+		"unsure": "Unsure",
+		"accept": "Accept",
+		"stop_test": "Stop the test",
+		"confirm": "Confirm",
+		"nickname": "Nickname",
+		"gender": "Gender",
+		"select_dropdown": "select...",
+		"reset": "reset",
+		"please_wait": "please wait...",
+		"problem_experienced_title": "There's a problem :(",
+		"back_to_home": "back to homepage",
+		"thanks": "thank you",
+		"email_address": "email address",
+		"save": "save",
+		"please_try_again": "Please try again",
+		"understood": "got it!"
+	},
+
+	"test_end": {
+		"thanks": "Thank you for completing the whole test!",
+		"give_us_your_email": "If you wish, you can give us your <b>email address</b> so that we can send you updates on this test, otherwise you may simply close this page.",
+		"thanks_for_email": "Thank you for your support!"
+	},
+
+	"onlymobile": {
+		"cant_run_on_mobile": "This test can't run on mobiles or tablets.",
+		"use_desktop_laptop": "Please use a laptop or a desktop computer."
+	},
+
+	"not_supported": {
+		"browser": "This browser is not supported.",
+		"javascript": "This test can only run in browsers supporting Javascript ES6.",
+		"to_read_list_browsers": "to get a list of supported browsers."
+	}
+}

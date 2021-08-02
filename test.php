@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['visited_index']) || $_SESSION['visited_index']==false)
-        header("location: /");
+        header("location: /simultaneous-contrast");
 
     $_SESSION['visited_index'] = false;
     $_SESSION['visited_test'] = false;
@@ -11,6 +11,7 @@
 ?>
 
 <?php include "components/header.php"; ?>
+
 
 <script type="text/javascript">
     var coneResetTime = 3000;
@@ -23,7 +24,7 @@
     <?php endif; ?>
 </script>
 
-<link href="/style/test-style.css" rel="stylesheet" type="text/css" media="all">
+<link href="style/test-style.css" rel="stylesheet" type="text/css" media="all">
 
 <body>
     <div class="main-test-container">
@@ -58,10 +59,10 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6" align="center">
                         <button type="button" class="btn btn-danger" id="resetButton">
-                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> reset
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <?php t("global", "reset") ?>
                         </button>
                         <button type="button" class="btn btn-dark-custom" data-bs-toggle="modal" data-bs-target="#confirmModal">
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> conferma e prosegui
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?php t("global", "submit_and_continue") ?>
                         </button>
                     </div>
                     <div class="col-md-3"></div>
@@ -75,7 +76,7 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <h1>attendi...</h1>
+                    <h1><?php t("global", "please_wait") ?></h1>
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -85,15 +86,15 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <h1>C'è un problema :(</h1>
+                    <h1><?php t("global", "problem_experienced_title") ?></h1>
                     <p>
-                        È stata persa la connessione col server, controlla la tua connessione di rete e riprova più tardi.
+                       <?php t("errors", "connection_lost") ?>
                     </p>
                     <p style="text-align: right">
-                        <i>Scusaci per l'inconveniente,<br>grazie!</i>
+                        <i><?php t("errors", "sorry_for_inconvenience") ?>,<br><?php t("global", "thanks") ?>!</i>
                     </p>
                     <p style="text-align: center">
-                        <a class="btn btn-success" href="test.php"><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>  torna alla home</a>
+                        <a class="btn btn-success" href="test.php"><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> <?php t("global", "back_to_home") ?></a>
                     </p>
                 </div>
                 <div class="col-md-2"></div>
@@ -104,19 +105,36 @@
 <!-- User details modal -->
 <?php include "components/userdetails.php"; ?>
 
+<!-- Alert cone reset modal -->
+<div class="modal fade" id="alertResetConeModal" tabindex="-1" role="dialog" aria-labelledby="alertResetConeModal" aria-hidden="true">
+    <div class="modal-dialog dark-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="alertResetConeModal"><?php t("global", "warning") ?>!</h5>
+          </div>
+          <div class="modal-body">
+            <?php t("modals", "alert_cone_reset_description") ?>
+          </div>
+          <div class="modal-footer">
+            <button id="closeAlertResetConeModal" type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php t("global", "understood") ?></button>
+          </div>
+        </div>
+    </div>
+</div>
+
 <!-- Confirmation modal -->
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModal" aria-hidden="true">
     <div class="modal-dialog dark-modal" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="confirmModal">ATTENZIONE!</h5>
+            <h5 class="modal-title" id="confirmModal"><?php t("global", "warning") ?>!</h5>
           </div>
           <div class="modal-body">
-            Sei sicuro di voler confermare il colore scelto?
+            <?php t("modals", "q_confirm_color_submit") ?>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Indietro</button>
-            <button id="next" type="button" class="btn btn-primary" data-bs-dismiss="modal">Conferma</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php t("global", "go_back") ?></button>
+            <button id="next" type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php t("global", "confirm") ?></button>
           </div>
         </div>
     </div>
@@ -127,19 +145,19 @@
     <div class="modal-dialog dark-modal" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="fullScreenModal">ATTENZIONE!</h5>
+            <h5 class="modal-title" id="fullScreenModal"><?php t("global", "warning") ?>!</h5>
           </div>
           <div class="modal-body">
             <p>
-                Per poter svolgere il test è necessario visualizzare la pagina a schermo intero.
+                <?php t("modals", "test_must_run_fullscreen") ?>.
             </p>
             <p>
-                Clicca su <b><i>Accetta</i></b> per proseguire con il test a schermo intero.
+                <?php t("global", "click_on") ?> <b><i><?php t("global", "accept") ?></i></b> <?php t("modals", "to_go_fullscreen") ?>.
             </p>
           </div>
           <div class="modal-footer">
-            <a class="btn btn-danger" href="index.php">Annulla il test</a>
-            <button id="goFullScreen" type="button" class="btn btn-primary" data-bs-dismiss="modal">Accetta</button>
+            <a class="btn btn-danger" href="index.php"><?php t("global", "stop_test") ?></a>
+            <button id="goFullScreen" type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php t("global", "accept") ?></button>
           </div>
         </div>
     </div>
@@ -147,6 +165,6 @@
 
 </body>
 
-<script type="module" src="/script/runTest/runTest.js"></script>
+<script type="module" src="./script/runTest/runTest.js"></script>
 
 <?php include "components/footer.php"; ?>

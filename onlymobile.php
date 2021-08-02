@@ -19,10 +19,10 @@
     		<div class="row">
 	    		<div class="col-md-2"></div>
 	    		<div class="col-md-8">
-		    		<h1>C'è un problema<br>:(</h1>
+		    		<h1><?php t("global", "problem_experienced_title") ?></h1>
 		    		<p>
-		    			Non puoi eseguire questo test su un dispositivo mobile.<br>
-		    			Utilizza un laptop o un computer desktop.
+		    			<?php t("onlymobile", "cant_run_on_mobile") ?><br>
+		    			<?php t("onlymobile", "use_desktop_laptop") ?>
 		    		</p>
 		    	</div>
 		    	<div class="col-md-2"></div>
