@@ -1,0 +1,7 @@
+browser_useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0
+browser_vendor: 
+user_nickname: TestRun
+user_gender: intersex
+user_works_with_colors: yes
+user_is_colorblind: no
+user_email_address: justan@emailaddress.net

@@ -19,13 +19,13 @@
     		<div class="row">
 	    		<div class="col-md-2"></div>
 	    		<div class="col-md-8">
-		    		<h1>C'è un problema<br>:(</h1>
+		    		<h1><?php t("global", "problem_experienced_title") ?></h1>
 		    		<p>
-		    			Questo browser non è supportato.<br>
+		    			<?php t("not_supported", "browser") ?><br>
 		    		</p>
 		    		<p>
-		    			Per eseguire il test è necessario utilizzare un browser che supporti Javascript ES6.<br>
-		    			Clicca <a href="https://caniuse.com/es6">qui</a> per leggere la lista di browser supportati.
+		    			<?php t("not_supported", "javascript") ?><br>
+		    			<?php t("global", "click") ?> <a href="https://caniuse.com/es6"><?php t("global", "here") ?></a> <?php t("not_supported", "to_read_list_browsers") ?>
 		    		</p>
 		    	</div>
 		    	<div class="col-md-2"></div>

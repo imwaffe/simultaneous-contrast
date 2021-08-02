@@ -1,8 +1,8 @@
-import * as jQuery from "/libraries/jquery-1.9.0.min.js";
-import * as Bootstrap from "/libraries/bootstrap/js/bootstrap.min.js";
-import {next, getCompletion, addChartLoadedCallback} from "/script/chartsLoader.js";
-import DataSaver from "/script/runTest/dataSaver.js";
-import SaveUserDetails from "/script/runTest/saveUserDetails.js";
+import * as jQuery from "../../libraries/jquery-1.9.0.min.js";
+import * as Bootstrap from "../../libraries/bootstrap/js/bootstrap.bundle.min.js";
+import {next, getCompletion, addChartLoadedCallback, canvasDrawer} from "../../script/chartsLoader.js";
+import DataSaver from "../../script/runTest/dataSaver.js";
+import SaveUserDetails from "../../script/runTest/saveUserDetails.js";
 
 var actualTime = 0;
 var lastTimeStamp = Date.now();
@@ -12,9 +12,13 @@ $(document).ready(function(){
 
     $(".modal").on("hide.bs.modal", function(){
         startTimer();
+        if(coneReset)
+            canvasDrawer.animateStart(coneResetDelay,coneResetTime);
     })
     $(".modal").on("show.bs.modal", function(){
         pauseTimer();
+        if(coneReset)
+            canvasDrawer.animateStop();
     })
 
     $("#goFullScreen").click(function(){
@@ -67,7 +71,10 @@ $(document).ready(function(){
 
     $saveUserDetails.onsave(function(){
         $("#fullScreenModal").modal({backdrop: 'static', keyboard: false});
-        $("#fullScreenModal").modal("show");
+        $("#alertResetConeModal").modal("show");
+        $("#alertResetConeModal").on("hidden.bs.modal", function(){
+            $("#fullScreenModal").modal("show");
+        });
     });
 });
 

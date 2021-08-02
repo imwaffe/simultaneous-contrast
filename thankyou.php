@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['visited_test']) || $_SESSION['visited_test']==false)
-        header("location: /");
+        header("location: index.php");
 
     $_SESSION['visited_test'] = false;
 ?>
@@ -22,26 +22,27 @@
     		<div class="row">
 	    		<div class="col-md-2"></div>
 	    		<div class="col-md-8">
-		    		<h1>Grazie!</h1>
+		    		<h1><?php t("global", "thanks") ?>!</h1>
 		    		<p>
-		    			Ti ringraziamo per aver completato correttamente il test!<br>
-		    			Se vuoi, lasciaci il tuo <b>indirizzo email</b>, così potremo contattarti per altri test, altrimenti puoi pure chiudere questa finestra.
+		    			<?php t("test_end", "thanks") ?><br>
+		    			<?php t("test_end", "give_us_your_email") ?>
 		    		</p>
 		    		<form class="form-inline" id="email-form">
 					  <div class="form-group mx-sm-3 mb-2">
-					    <label for="inputEmail" class="sr-only">Indirizzo email</label>
-					    <input type="email" class="form-control" id="inputEmail" placeholder="Indirizzo email" required>
+					    <label for="inputEmail" class="sr-only"><?php t("global", "email_address") ?></label>
+					    <input type="email" class="form-control" id="inputEmail" placeholder="<?php t("global", "email_address") ?>" required>
 					  </div>
-					  <button type="submit" class="btn btn-primary mb-2">Salva</button>
+					  <button type="submit" class="btn btn-primary mb-2"><?php t("global", "save") ?></button>
 					</form>
 					<p id="email-success" style="display: none;">
-						<b>Grazie per il tuo contributo!</b>
+						<b><?php t("test_end", "thanks_for_email") ?></b>
 					</p>
 					<p id="email-wait" style="display: none;">
-						<b>Attendi...</b>
+						<b><?php t("global", "please_wait") ?></b>
 					</p>
 					<p id="email-fail" style="display: none;">
-						<b>Si è verificato un problema :(<br> Ti invitiamo a rirovare</b>
+						<b><?php t("global", "problem_experienced_title") ?></b><br>
+						<?php t("global", "please_try_again") ?>
 					</p>
 		    	</div>
 		    	<div class="col-md-2"></div>
@@ -66,7 +67,7 @@
 	    	$("#email-form").hide(100);
 	    	$("#email-fail").hide(100);
 	    	$("#email-wait").show(100);
-			$.post("/functions/saveResults.php?action=userdetails",{
+			$.post("functions/saveResults.php?action=userdetails",{
 	        	user_email_address:$("#inputEmail").val()
 	    	}).done(function(data){
 	    		$("#email-wait").hide(100);

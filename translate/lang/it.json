@@ -1,0 +1,94 @@
+{
+	"instructions": {
+		"using_sliders": "Utilizzando i selettori",
+		"match_squares": "devi cercare di far coincidere il colore del quadrato piccolo a destra <i>(cerchiato in blu)</i> con quello del quadrato piccolo a sinistra <i>(cerchiato in rosso)</i><br>Ogni 5 secondi i quadrati diventeranno bianchi per 3 secondi, in quel lasso di tempo non potrai interagire con i controlli.",
+		"when_matched": "Quando pensi di aver ottenuto la corrispondenza corretta, clicca sul pulsante",
+		"to_continue": "per proseguire nel test",
+		"try_demo": "Puoi provare il funzionamento del test in questa schermata, sfruttando quello che vedi a lato.",
+		"when_ready": "Quando ti senti pronto puoi iniziare il test vero e proprio premendo il pulsante qui sotto:",
+		"start_test": "inizierai effettivamente il test"
+	},
+
+	"modals": {
+		"requires_10_minutes_cant_interrupt": "Il test richiede circa dieci minuti e non può essere interrotto",
+		"just_demo_to_start_click_on": "Questa è solo una prova, per iniziare il test vero e proprio premi sul pulsante",
+		"q_sure_to_start": "Sei sicuro di voler iniziare?",
+		"test_must_run_fullscreen": "Per poter svolgere il test è necessario visualizzare la pagina a schermo intero",
+		"to_go_fullscreen": "per proseguire con il test a schermo intero",
+		"q_confirm_color_submit": "Sei sicuro di voler confermare il colore scelto?",
+		"alert_cone_reset_description": "Ogni 5 secondi i due quadrati diventeranno bianchi per 3 secondi, durante questo lasso di tempo non potrai interagire con i controlli.<br>Questo riduce la possibilità che il sistema visivo manifesti forme di adattamento a fronte di uno stimolo sempre uguale e prolungato."
+	},
+
+	"user_details": {
+		"tell_something_about_you": "Dicci qualcosa su di te",
+		"before_start_need_information": "Prima di iniziare il test ci servono delle informazioni su di te:",
+
+		"q_work_with_color": "Lavori con il colore?",
+		"q_problem_with_color": "Hai problemi a vedere i colori?",
+		"q_problem_with_color_explain": "Hai o hai mai avuto problemi con la visione dei colori?",
+
+		"ask_nickname": "Scrivi un soprannome che ci aiuterà a distinguere i vari test mantenendo l'anonimato",
+		"select_gender": "Indica il sesso che ti è stato assegnato alla nascita",
+		"q_work_with_color_explain": "Per lavoro o per passione hai a che fare quotidianamente con il colore?",
+		"q_work_with_color_examples": "fotografo, grafico, pittore, ..."
+	},
+
+	"errors": {
+		"connection_lost": "È stata persa la connessione col server, controlla la tua connessione di rete e riprova più tardi",
+		"sorry_for_inconvenience": "Scusaci per l'inconveniente"
+	},
+
+	"global": {
+		"instructions": "Istruzioni",
+		"hue": "Tinta",
+		"saturation": "Saturazione",
+		"brightness": "Luminosità",
+		"submit_and_continue": "conferma e prosegui",
+		"begin_test": "inizia il test",
+		"warning": "ATTENZIONE",
+		"clicking_on": "Premendo su",
+		"click_on": "Premi su",
+		"click": "Clicca",
+		"here": "qui",
+		"go_back": "indietro",
+		"for_example": "Ad esempio",
+		"male": "Maschile",
+		"female": "Femminile",
+		"intersex": "Intersessuale",
+		"yes": "Sì",
+		"no": "No",
+		"unsure": "Non so",
+		"accept": "Accetta",
+		"stop_test": "Annulla il test",
+		"confirm": "Conferma",
+		"nickname": "Pseudonimo",
+		"gender": "Sesso",
+		"select_dropdown": "seleziona...",
+		"reset": "reset",
+		"please_wait": "attendi...",
+		"problem_experienced_title": "C'è un problema :(",
+		"back_to_home": "torna alla home",
+		"thanks": "grazie",
+		"email_address": "indirizzo email",
+		"save": "salva",
+		"please_try_again": "Ti invitiamo a riprovare",
+		"understood": "ho capito!"
+	},
+
+	"test_end": {
+		"thanks": "Ti ringraziamo per aver completato correttamente il test!",
+		"give_us_your_email": "Se vuoi, lasciaci il tuo <b>indirizzo email</b>, così potremo contattarti per altri test, altrimenti puoi pure chiudere questa finestra.",
+		"thanks_for_email": "Grazie per il tuo contributo!"
+	},
+
+	"onlymobile": {
+		"cant_run_on_mobile": "Non puoi eseguire questo test su un dispositivo mobile.",
+		"use_desktop_laptop": "Utilizza un laptop o un computer desktop."
+	},
+
+	"not_supported": {
+		"browser": "Questo browser non è supportato.",
+		"javascript": "Per eseguire il test è necessario utilizzare un browser che supporti Javascript ES6.",
+		"to_read_list_browsers": "per leggere la lista di browser supportati."
+	}
+}

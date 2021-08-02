@@ -1,5 +1,5 @@
-import * as jQuery from "/libraries/jquery-1.9.0.min.js";
-import * as Bootstrap from "/libraries/bootstrap/js/bootstrap.min.js";
+import * as jQuery from "../../libraries/jquery-1.9.0.min.js";
+import * as Bootstrap from "../../libraries/bootstrap/js/bootstrap.bundle.min.js";
 
 var $onSavedDetailsCallback = $.Callbacks();
 
