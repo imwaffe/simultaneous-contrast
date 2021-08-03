@@ -42,6 +42,8 @@ export default class Rectangles{
     turnWhite(cond){
         if(cond){
             $("#whole-test-container").css("pointer-events","none");
+            $("#whole-test-container").find("button").prop("disabled",true);
+            $("body").css("cursor","wait");
             this.rewriteSecondBg = false;
             var tmpRestoreColor = {};
             Object.assign(tmpRestoreColor, this.restoreColor);
@@ -52,6 +54,8 @@ export default class Rectangles{
             this.restoreColor = tmpRestoreColor;
         } else {
             $("#whole-test-container").css("pointer-events","all");
+            $("#whole-test-container").find("button").prop("disabled",false);
+            $("body").css("cursor","auto");
             this.rewriteSecondBg = true;
             this.init(this.restoreColor);
         }
@@ -147,6 +151,8 @@ export default class Rectangles{
             window.clearInterval(this.intervals[key]);
         }
         $("#whole-test-container").css("pointer-events","all");
+        $("#whole-test-container").find("button").prop("disabled",false);
+        $("body").css("cursor","auto");
         this.init(this.restoreColor);
     }
 }

@@ -1,7 +1,7 @@
 {
 	"instructions": {
 		"using_sliders": "Utilizzando i selettori",
-		"match_squares": "devi cercare di far coincidere il colore del quadrato piccolo a destra <i>(cerchiato in blu)</i> con quello del quadrato piccolo a sinistra <i>(cerchiato in rosso)</i><br>Ogni 5 secondi i quadrati diventeranno bianchi per 3 secondi, in quel lasso di tempo non potrai interagire con i controlli.",
+		"match_squares": "devi cercare di far coincidere il colore del quadrato piccolo a destra <i>(cerchiato in blu)</i> con quello del quadrato piccolo a sinistra <i>(cerchiato in rosso)</i><br>Ogni 15 secondi i quadrati diventeranno bianchi per 5 secondi, in quel lasso di tempo non potrai interagire con i controlli.",
 		"when_matched": "Quando pensi di aver ottenuto la corrispondenza corretta, clicca sul pulsante",
 		"to_continue": "per proseguire nel test",
 		"try_demo": "Puoi provare il funzionamento del test in questa schermata, sfruttando quello che vedi a lato.",
@@ -16,7 +16,7 @@
 		"test_must_run_fullscreen": "Per poter svolgere il test è necessario visualizzare la pagina a schermo intero",
 		"to_go_fullscreen": "per proseguire con il test a schermo intero",
 		"q_confirm_color_submit": "Sei sicuro di voler confermare il colore scelto?",
-		"alert_cone_reset_description": "Ogni 5 secondi i due quadrati diventeranno bianchi per 3 secondi, durante questo lasso di tempo non potrai interagire con i controlli.<br>Questo riduce la possibilità che il sistema visivo manifesti forme di adattamento a fronte di uno stimolo sempre uguale e prolungato."
+		"alert_cone_reset_description": "Ogni 15 secondi i due quadrati diventeranno bianchi per 5 secondi, durante questo lasso di tempo non potrai interagire con i controlli.<br>Questo riduce la possibilità che il sistema visivo manifesti forme di adattamento a fronte di uno stimolo sempre uguale e prolungato."
 	},
 
 	"user_details": {

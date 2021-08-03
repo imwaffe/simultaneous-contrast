@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['visited_index']) || $_SESSION['visited_index']==false)
-        header("location: /simultaneous-contrast");
+        header("location: /");
 
     $_SESSION['visited_index'] = false;
     $_SESSION['visited_test'] = false;
@@ -14,14 +14,11 @@
 
 
 <script type="text/javascript">
-    var coneResetTime = 3000;
-    var coneResetDelay = 5000;
-    var coneReset = false
-    <?php if( isset($_GET["cone_reset_time"]) && isset($_GET["cone_reset_delay"]) ): ?>
-        coneResetTime = <?php echo $_GET['cone_reset_time']; ?>;
-        coneResetDelay = <?php echo $_GET['cone_reset_delay']; ?>;
-        coneReset = true;
-    <?php endif; ?>
+    var coneResetTime = <?php echo getenv('TEST_PAUSE_DURATION'); ?>;
+    var coneResetDelay = <?php echo getenv('TEST_PAUSE_PERIOD'); ?>;
+    var coneReset = true;
+    if(coneResetTime<=0 || coneResetDelay<=0)
+        var coneReset = false;
 </script>
 
 <link href="style/test-style.css" rel="stylesheet" type="text/css" media="all">
