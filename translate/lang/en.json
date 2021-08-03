@@ -1,7 +1,7 @@
 {
 	"instructions": {
 		"using_sliders": "Using the sliders",
-		"match_squares": "you have to try matching the color of the tiny inner square on the right (circled in blue) with the color of the inner square on the left (circled in red).<br>Every 5 seconds the two squares will become solid white for 3 seconds, during that time you won't be able to interact with the test.",
+		"match_squares": "you have to try matching the color of the tiny inner square on the right (circled in blue) with the color of the inner square on the left (circled in red).<br>Every 15 seconds the two squares will become solid white for 5 seconds, during that time you won't be able to interact with the test.",
 		"when_matched": "When you feel you correctly matched the two squares, please click on",
 		"to_continue": "to continue with the test",
 		"try_demo": "You can try out how it works in this page, using the demo on the right.",
@@ -16,7 +16,7 @@
 		"test_must_run_fullscreen": "The test must run in full screen mode",
 		"to_go_fullscreen": "to run the test in full screen mode",
 		"q_confirm_color_submit": "Are you sure you want to submit the chosen color?",
-		"alert_cone_reset_description": "Every 5 seconds, both squares will turn white for 3 seconds, during this period you won't be able to interact with the interface.<br>This prevents the visual system to compensate prolonged and constant stimuli."
+		"alert_cone_reset_description": "Every 15 seconds, both squares will turn white for 5 seconds, during this period you won't be able to interact with the interface.<br>This prevents the visual system to compensate prolonged and constant stimuli."
 	},
 
 	"user_details": {

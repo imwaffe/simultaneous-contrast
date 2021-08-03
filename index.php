@@ -129,18 +129,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-bs-dismiss="modal"><?php t("global", "go_back") ?></button>
-                    <a class="btn btn-success" href="test.php?cone_reset_delay=5000&cone_reset_time=3000"><?php t("global", "begin_test") ?></a>
-                    <!--
-                    <div class="dropdown show">
-                      <button class="btn btn-success dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        inizia il test <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="test.php">Test semplice</a>
-                        <a class="dropdown-item" href="test.php?cone_reset_delay=5000&cone_reset_time=3000">Reset coni 5s/3s</a>
-                        <a class="dropdown-item" href="test.php?cone_reset_delay=15000&cone_reset_time=5000">Reset coni 15s/5s</a>
-                      </div>
-                    -->
+                    <a class="btn btn-success" href="test.php"><?php t("global", "begin_test") ?></a>
                     </div>
                   </div>
                 </div>
