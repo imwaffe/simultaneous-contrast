@@ -6,6 +6,7 @@ export default class Rectangles{
         "color": 5000,
         "white": 3000
     }
+    setBackground = false;
 
     constructor(outerSize, innerSize, gap, canvas, colorPicker){
         this.whiteNoiseImg = null;
@@ -14,23 +15,30 @@ export default class Rectangles{
         this.c = canvas.getContext("2d");
         this.colorPicker = colorPicker;
 
-        var width = canvas.width;
-        var height = canvas.height;
-
+        this.canvas = canvas;
         this.outerSize = outerSize;
-        this.innerSize = innerSize;
         this.gap = gap;
-        this.leftOuterMargin = (width-(outerSize*2+gap))/2;
+
+        this.setSizes(innerSize);
+    }
+
+    setSizes(innerSize){
+        this.innerSize = innerSize;
+        this.leftOuterMargin = (this.canvas.width-(this.outerSize*2+this.gap))/2;
         this.leftInnerMargin = this.leftOuterMargin+this.outerSize/2-this.innerSize/2;
-        this.topOuterMargin = (height-outerSize)/2;
-        this.topInnerMargin = height/2-innerSize/2;
+        this.topOuterMargin = (this.canvas.height-this.outerSize)/2;
+        this.topInnerMargin = this.canvas.height/2-this.innerSize/2;
     }
 
     init(colors){
-        this.colorPicker.trigger("colorpickersliders.updateColor", colors.second_foreground);
-
+        if(colors.inner_size>=0)
+            this.setSizes(colors.inner_size);
+        if(this.setBackground)
+            this.colorPicker.trigger("colorpickersliders.updateColor", colors.second_background);
+        else
+            this.colorPicker.trigger("colorpickersliders.updateColor", colors.second_foreground);
         this.setFirstBGColor(colors.background_color);
-        this.setSecondBGColor();
+        this.setSecondBGColor(colors.second_background);
         this.onBackgroundLoadCallback.add((function(){
             this.setSecondFGColor(colors.second_foreground);
             this.setFirstFGColor(colors.first_foreground);
@@ -43,6 +51,7 @@ export default class Rectangles{
         if(cond){
             $("#whole-test-container").css("pointer-events","none");
             $("#whole-test-container").find("button").prop("disabled",true);
+            $(".cp-container").hide();
             $("body").css("cursor","wait");
             this.rewriteSecondBg = false;
             var tmpRestoreColor = {};
@@ -55,6 +64,7 @@ export default class Rectangles{
         } else {
             $("#whole-test-container").css("pointer-events","all");
             $("#whole-test-container").find("button").prop("disabled",false);
+            $(".cp-container").show();
             $("body").css("cursor","auto");
             this.rewriteSecondBg = true;
             this.init(this.restoreColor);
@@ -63,7 +73,7 @@ export default class Rectangles{
 
     setFirstBGColor(color){
         this.restoreColor["background_color"] = color;
-        if(color != "wn"){
+        if(color !== "wn"){
             this.c.fillStyle = color;
             this.c.fillRect(this.leftOuterMargin, this.topOuterMargin, this.outerSize, this.outerSize);
         } else {
@@ -81,17 +91,23 @@ export default class Rectangles{
         this.c.fillRect(this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
     }
 
-    setSecondBGColor(){
+    setSecondBGColor(color){
+        this.restoreColor["second_background"] = color;
+        this.setBackground = false;
+        if (color !== 'wn'){
+            this.setBackground = true;
+            return this.setSecondBGrgbColor(color);
+        }
         if(this.whiteNoiseImg==null){
             this.whiteNoiseImg = new Image();
             this.whiteNoiseImg.src = whiteNoiseFile;
             this.whiteNoiseImg.onload = (function(){
-                this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
+                this.c.drawImage(this.whiteNoiseImg, this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
                 this.onBackgroundLoadCallback.fire();
             }).bind(this);
         }
         else
-            this.c.drawImage(this.whiteNoiseImg,this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
+            this.c.drawImage(this.whiteNoiseImg, this.leftOuterMargin+this.outerSize+this.gap, this.topOuterMargin,this.outerSize,this.outerSize);
     }
 
     setFirstFGColor(color){
@@ -103,9 +119,30 @@ export default class Rectangles{
     setSecondFGColor(color){
         this.restoreColor["second_foreground"] = color;
         if(this.rewriteSecondBg)
-            this.setSecondBGColor();
-        this.c.fillStyle = color;
-        this.c.fillRect(this.leftInnerMargin+this.outerSize+this.gap, this.topInnerMargin, this.innerSize, this.innerSize);
+            this.setSecondBGColor(this.restoreColor["second_background"]);
+        if(color !== 'wn'){
+            this.c.fillStyle = color;
+            this.c.fillRect(this.leftInnerMargin+this.outerSize+this.gap, this.topInnerMargin, this.innerSize, this.innerSize);
+        } else {
+            if (this.whiteNoiseImg == null) {
+                this.whiteNoiseImg = new Image();
+                this.whiteNoiseImg.src = whiteNoiseFile;
+                this.whiteNoiseImg.onload = (function () {
+                    this.c.drawImage(this.whiteNoiseImg, this.leftInnerMargin + this.outerSize + this.gap, this.topInnerMargin, this.innerSize, this.innerSize);
+                    this.onBackgroundLoadCallback.fire();
+                }).bind(this);
+            } else
+                this.c.drawImage(this.whiteNoiseImg, this.leftInnerMargin + this.outerSize + this.gap, this.topInnerMargin, this.innerSize, this.innerSize);
+        }
+    }
+
+    setUserColor(color){
+        if(this.setBackground) {
+            this.setSecondBGColor(color);
+            this.setSecondFGColor(this.restoreColor["second_foreground"]);
+        }
+        else
+            this.setSecondFGColor(color);
     }
 
     setFGColor(color){
@@ -152,6 +189,7 @@ export default class Rectangles{
         }
         $("#whole-test-container").css("pointer-events","all");
         $("#whole-test-container").find("button").prop("disabled",false);
+        $(".cp-container").show();
         $("body").css("cursor","auto");
         this.init(this.restoreColor);
     }

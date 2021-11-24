@@ -1,13 +1,13 @@
 import * as jQuery from "../../libraries/jquery-1.9.0.min.js";
 import ColorUtils from "../../script/colorUtils/colorUtils.js";
-import {getChartID, getCurrentBgColor, getCurrentPickedColor, getCurrentActualColor, CANVAS_ID} from "../../script/chartsLoader.js";
+import {getChartID, getCurrentContextColor, getCurrentPickedColor, getCurrentActualColor, CANVAS_ID} from "../../script/chartsLoader.js";
 
 export default class DataSaver{
     static addData(actualTime){
         var colors = new ColorUtils(getCurrentPickedColor(), getCurrentActualColor());
         return $.post("functions/saveResults.php?action=add",{
             chart_id: getChartID(),
-            bg_color: getCurrentBgColor().toHexString(),
+            context_color: getCurrentContextColor().toHexString(),
             actual_color: getCurrentActualColor().toHexString(),
             picked_color: getCurrentPickedColor().toHexString(),
             rgb_dist: colors.getRGBEuclidDist(),

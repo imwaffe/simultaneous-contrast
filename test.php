@@ -1,6 +1,5 @@
 <?php 
     session_start();
-
     if(!isset($_SESSION['visited_index']) || $_SESSION['visited_index']==false)
         header("location: /");
 
@@ -18,7 +17,7 @@
     var coneResetDelay = <?php echo getenv('TEST_PAUSE_PERIOD'); ?>;
     var coneReset = true;
     if(coneResetTime<=0 || coneResetDelay<=0)
-        var coneReset = false;
+        coneReset = false;
 </script>
 
 <link href="style/test-style.css" rel="stylesheet" type="text/css" media="all">

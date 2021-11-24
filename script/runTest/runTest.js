@@ -9,7 +9,7 @@ var lastTimeStamp = Date.now();
 
 $(document).ready(function(){
     var $saveUserDetails = new SaveUserDetails();
-
+    canvasDrawer.animateStart(coneResetDelay,coneResetTime);
     $(".modal").on("hide.bs.modal", function(){
         startTimer();
         if(coneReset)

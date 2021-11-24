@@ -19,7 +19,7 @@
 <script>
     try {
         import("foo").catch(() => {});
-    } catch (e) {};
+    } catch (e) {}
     supported = true;
 </script>
 <script>

@@ -32,6 +32,7 @@ export function getCompletion(){
 var $chartLoadedCallbacks = $.Callbacks();
 $.get( ((typeof csvFile==='undefined')?"colors.csv":csvFile), function(CSVdata) {
       inputColors = $.csv.toObjects(CSVdata);
+      //console.log(inputColors);
 }).done(function(){
     var usedNumbers = [];
     totalCharts = inputColors.length;
@@ -50,6 +51,7 @@ $.get( ((typeof csvFile==='undefined')?"colors.csv":csvFile), function(CSVdata) 
     reset();
 });
 
+
 function initColorPicker(){
     /* Init color picker */
     $("#hsl").ColorPickerSliders({
@@ -66,7 +68,8 @@ function initColorPicker(){
             hsllightness: "",
         },
         onchange: function(container, color){
-            canvasDrawer.setSecondFGColor(color.tiny.toHexString());
+            // canvasDrawer.setSecondFGColor(color.tiny.toHexString());
+            canvasDrawer.setUserColor(color.tiny.toHexString());
             inputColors[randomSequence[selectedColor]].picked_color = color.tiny.toHexString();
         }
     });
@@ -103,13 +106,19 @@ function reset(){
 }
 
 export function getCurrentActualColor(){
-    return tinycolor(inputColors[randomSequence[selectedColor]].first_foreground);
+    if(canvasDrawer.setBackground)
+        return tinycolor(inputColors[randomSequence[selectedColor]].background_color);
+    else
+        return tinycolor(inputColors[randomSequence[selectedColor]].first_foreground);
 }
 export function getCurrentPickedColor(){
     return tinycolor(inputColors[randomSequence[selectedColor]].picked_color);
 }
-export function getCurrentBgColor(){
-    return tinycolor(inputColors[randomSequence[selectedColor]].background_color);
+export function getCurrentContextColor(){
+    if(canvasDrawer.setBackground)
+        return tinycolor(inputColors[randomSequence[selectedColor]].first_foreground);
+    else
+        return tinycolor(inputColors[randomSequence[selectedColor]].background_color);
 }
 export function getChartID(){
     return inputColors[randomSequence[selectedColor]].chart_id;

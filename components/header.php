@@ -17,7 +17,7 @@
         <meta charset="utf-8">
         <title>Contrasto di simultaneità</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <base href="/">
+        <base href=".">
         <link href="libraries/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
         <link href="libraries/prettify/prettify.css" rel="stylesheet" type="text/css" media="all">
         <link href="libraries/jquery-colorpickersliders/jquery.colorpickersliders.css" rel="stylesheet" type="text/css" media="all">

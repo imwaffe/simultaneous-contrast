@@ -8,7 +8,7 @@
 	$testUsersDetails = "user_details.txt";
 
 	if($_GET["action"]=="add"){
-		if(!isset($_POST["chart_id"]) || !isset($_POST["bg_color"]) || !isset($_POST["actual_color"]) || !isset($_POST["picked_color"]) || !isset($_POST["time"])){
+		if(!isset($_POST["chart_id"]) || !isset($_POST["context_color"]) || !isset($_POST["actual_color"]) || !isset($_POST["picked_color"]) || !isset($_POST["time"])){
 			http_response_code(400);
 			exit();
 		}
@@ -22,7 +22,7 @@
 			file_put_contents($testRoot.$testResultsFilename, $heading.PHP_EOL);
 		}
 
-		$row = '"'.$_POST["chart_id"].'","'.$_POST["bg_color"].'","'.$_POST["actual_color"].'","'.$_POST["picked_color"].'","'.$_POST["rgb_dist"].'","'.$_POST["hsl_dist"].'","'.$_POST["hue_dist"].'","'.$_POST["saturation_dist"].'","'.$_POST["luma_dist"].'","'.$_POST["hue_delta"].'","'.$_POST["saturation_delta"].'","'.$_POST["luma_delta"].'","'.$_POST["time"].'"';
+		$row = '"'.$_POST["chart_id"].'","'.$_POST["context_color"].'","'.$_POST["actual_color"].'","'.$_POST["picked_color"].'","'.$_POST["rgb_dist"].'","'.$_POST["hsl_dist"].'","'.$_POST["hue_dist"].'","'.$_POST["saturation_dist"].'","'.$_POST["luma_dist"].'","'.$_POST["hue_delta"].'","'.$_POST["saturation_delta"].'","'.$_POST["luma_delta"].'","'.$_POST["time"].'"';
 		file_put_contents($testRoot.$testResultsFilename, $row.PHP_EOL, FILE_APPEND | LOCK_EX);
 	}
 
