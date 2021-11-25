@@ -1,7 +1,7 @@
 {
 	"instructions": {
 		"using_sliders": "Using the sliders",
-		"match_squares": "you have to try matching the color of the tiny inner square on the right (circled in blue) with the color of the inner square on the left (circled in red).<br>Every 15 seconds the two squares will become solid white for 5 seconds, during that time you won't be able to interact with the test.",
+		"match_squares": "you have to try matching the color of the inner square on the right with the color of the inner square on the left, OR the color of the background on the right with the color of the background on the left (depending on the type of chart).<br>Every 15 seconds the two squares will become solid white for 5 seconds, during that time you won't be able to interact with the test.",
 		"when_matched": "When you feel you correctly matched the two squares, please click on",
 		"to_continue": "to continue with the test",
 		"try_demo": "You can try out how it works in this page, using the demo on the right.",

@@ -1,4 +1,2 @@
-chart_id,background_color,first_foreground,second_foreground,color
-1,#d5fe14,#d4975e,#ffeb43,true
-2,#0e48ad,#6a3bc7,#55db1a,true
-3,#eadd6b,#c8cb74,#db1a2c,true
+chart_id,background_color,second_background,first_foreground,second_foreground,color,inner_size
+a,#d5fe14,#d4aa5e,#9999dd,wn,true,75

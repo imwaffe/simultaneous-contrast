@@ -1,7 +1,7 @@
 {
 	"instructions": {
 		"using_sliders": "Utilizzando i selettori",
-		"match_squares": "devi cercare di far coincidere il colore del quadrato piccolo a destra <i>(cerchiato in blu)</i> con quello del quadrato piccolo a sinistra <i>(cerchiato in rosso)</i><br>Ogni 15 secondi i quadrati diventeranno bianchi per 5 secondi, in quel lasso di tempo non potrai interagire con i controlli.",
+		"match_squares": "devi cercare di far coincidere il colore del quadrato centrale di destra con quello del quadrato centrale a sinistra, oppure dovrai far coincidere lo sfondo di destra con quello di sinistra (a seconda della tavola).<br>Ogni 15 secondi i quadrati diventeranno bianchi per 5 secondi, in quel lasso di tempo non potrai interagire con i controlli.",
 		"when_matched": "Quando pensi di aver ottenuto la corrispondenza corretta, clicca sul pulsante",
 		"to_continue": "per proseguire nel test",
 		"try_demo": "Puoi provare il funzionamento del test in questa schermata, sfruttando quello che vedi a lato.",

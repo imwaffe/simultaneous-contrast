@@ -87,7 +87,7 @@ export function next(){
 function displayChart(index){
     canvasDrawer.init(inputColors[index]);
     showColorsSlider(inputColors[index].color);
-    setText("chart "+inputColors[index].chart_id);
+    //setText("chart "+inputColors[index].chart_id);
     $rewriteChartCallback.fire();
 }
 

@@ -162,8 +162,8 @@
         }
 
         $(document).ready(function(){
-            addRewriteChartCallback(drawExampleCircles);
-            canvasDrawer.onBackgroundLoadCallback.add(drawExampleCircles);
+            //addRewriteChartCallback(drawExampleCircles);
+            //canvasDrawer.onBackgroundLoadCallback.add(drawExampleCircles);
         })
     </script>
 

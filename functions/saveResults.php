@@ -18,7 +18,7 @@
 		}
 
 		if(!file_exists($testRoot.$testResultsFilename)){
-			$heading = '"chart_id","background_color","actual_color","picked_color","rgb_dist","hsl_dist","hue_dist","saturation_dist","luma_dist","hue_delta","saturation_delta","luma_delta","time"';
+			$heading = '"chart_id","context_color","actual_color","picked_color","rgb_dist","hsl_dist","hue_dist","saturation_dist","luma_dist","hue_delta","saturation_delta","luma_delta","time"';
 			file_put_contents($testRoot.$testResultsFilename, $heading.PHP_EOL);
 		}
 
